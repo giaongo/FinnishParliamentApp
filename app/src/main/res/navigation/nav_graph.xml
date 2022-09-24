@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/partyListFragment">
+
+    <fragment
+        android:id="@+id/introAppFragment"
+        android:name="fi.giao.finnishparliamentapp.ui.IntroAppFragment"
+        android:label="fragment_intro_app"
+        tools:layout="@layout/fragment_intro_app" />
+    <fragment
+        android:id="@+id/partyListFragment"
+        android:name="fi.giao.finnishparliamentapp.ui.PartyListFragment"
+        android:label="fragment_party_list"
+        tools:layout="@layout/fragment_party_list" >
+        <action
+            android:id="@+id/action_partyListFragment_to_memberListFragment"
+            app:destination="@id/memberListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/memberListFragment"
+        android:name="fi.giao.finnishparliamentapp.ui.MemberListFragment"
+        android:label="fragment_member_list"
+        tools:layout="@layout/fragment_member_list" >
+        <action
+            android:id="@+id/action_memberListFragment_to_memberInfoFragment"
+            app:destination="@id/memberInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/memberInfoFragment"
+        android:name="fi.giao.finnishparliamentapp.ui.MemberInfoFragment"
+        android:label="fragment_member_info"
+        tools:layout="@layout/fragment_member_info" />
+</navigation>
