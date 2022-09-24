@@ -6,18 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import fi.giao.finnishparliamentapp.R
+import fi.giao.finnishparliamentapp.databinding.FragmentIntroAppBinding
 
 class IntroAppFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding:FragmentIntroAppBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_intro_app, container, false)
+        binding = FragmentIntroAppBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
 }
