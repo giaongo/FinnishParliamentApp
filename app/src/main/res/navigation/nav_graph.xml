@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/introAppFragment"
-        android:name="fi.giao.finnishparliamentapp.ui.IntroAppFragment"
+        android:name="fi.giao.finnishparliamentapp.ui.fragments.IntroAppFragment"
         android:label="fragment_intro_app"
         tools:layout="@layout/fragment_intro_app" />
     <fragment
         android:id="@+id/partyListFragment"
-        android:name="fi.giao.finnishparliamentapp.ui.PartyListFragment"
+        android:name="fi.giao.finnishparliamentapp.ui.fragments.PartyListFragment"
         android:label="fragment_party_list"
         tools:layout="@layout/fragment_party_list" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/memberListFragment"
-        android:name="fi.giao.finnishparliamentapp.ui.MemberListFragment"
+        android:name="fi.giao.finnishparliamentapp.ui.fragments.MemberListFragment"
         android:label="fragment_member_list"
         tools:layout="@layout/fragment_member_list" >
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/memberInfoFragment"
-        android:name="fi.giao.finnishparliamentapp.ui.MemberInfoFragment"
+        android:name="fi.giao.finnishparliamentapp.ui.fragments.MemberInfoFragment"
         android:label="fragment_member_info"
         tools:layout="@layout/fragment_member_info" />
 </navigation>

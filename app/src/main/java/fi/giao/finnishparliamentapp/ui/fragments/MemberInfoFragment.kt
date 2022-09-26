@@ -1,4 +1,4 @@
-package fi.giao.finnishparliamentapp.ui
+package fi.giao.finnishparliamentapp.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,16 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import fi.giao.finnishparliamentapp.R
-import fi.giao.finnishparliamentapp.databinding.FragmentMemberListBinding
+import fi.giao.finnishparliamentapp.databinding.FragmentMemberInfoBinding
 
-class MemberListFragment : Fragment() {
-    private lateinit var binding:FragmentMemberListBinding
+class MemberInfoFragment : Fragment() {
+    private lateinit var binding: FragmentMemberInfoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMemberListBinding.inflate(layoutInflater,container,false)
+        // Inflate the layout for this fragment
+        binding = FragmentMemberInfoBinding.inflate(inflater,container,false)
         return binding.root
     }
 }
