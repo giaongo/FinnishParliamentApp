@@ -6,4 +6,17 @@
     <string name="member_party">%s</string>
     <string name="user_comment_label"><u>Your Reviews</u></string>
     <string name="comment_add_button">Add</string>
+
+<!-- AddReviewFragment   -->
+    <string name="rating_label">Your Rating</string>
+    <string name="comment_label">Your Comment</string>
+    <string name="comment_edt">Write your comments</string>
+    <string name="add_button">Add Review</string>
+    <!-- ExtraMemberInfoFragment -->
+    <string name="name_text">Name: %1s %2s</string>
+    <string name="party_text">Party: %s</string>
+    <string name="born_year_text">Born Year: %d</string>
+    <string name="constituency_text">Constituency: %s</string>
+    <string name="twitter_text"><a>Twitter:</a> %s</string>
+
 </resources>
