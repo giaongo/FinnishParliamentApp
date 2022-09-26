@@ -4,12 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fi.giao.finnishparliamentapp.R
-import fi.giao.finnishparliamentapp.data.ParliamentMember
 
 class PartyAdapter : ListAdapter<String, PartyAdapter.ViewHolder>(DiffCallBack){
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
