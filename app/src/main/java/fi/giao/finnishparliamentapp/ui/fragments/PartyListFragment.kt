@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import fi.giao.finnishparliamentapp.adapter.PartyAdapter
 import fi.giao.finnishparliamentapp.databinding.FragmentPartyListBinding
@@ -29,7 +31,11 @@ class PartyListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val memberAdapter = PartyAdapter()
+        val memberAdapter = PartyAdapter{
+            val action = PartyListFragmentDirections.actionPartyListFragmentToMemberListFragment(it)
+            view.findNavController().navigate(action)
+        }
+
         binding.partyListRecyclerView.apply {
             adapter = memberAdapter
             layoutManager = LinearLayoutManager(requireContext())

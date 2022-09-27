@@ -9,17 +9,24 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fi.giao.finnishparliamentapp.R
 
-class PartyAdapter : ListAdapter<String, PartyAdapter.ViewHolder>(DiffCallBack){
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_view,parent,false)
-        return ViewHolder(view)
+class PartyAdapter(val onItemClick : (String) -> Unit) : ListAdapter<String, PartyAdapter.PartyViewHolder>(DiffCallBack){
+    inner class PartyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val itemText:TextView = itemView.findViewById(R.id.item_text_view)
+        init {
+            itemView.setOnClickListener {
+                onItemClick(getItem(adapterPosition))
+            }
+        }
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.findViewById<TextView>(R.id.item_text_view).text =
-            getItem(position)
+    // Create ViewHolder and set item click listener on ViewHolder
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartyViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_view,parent,false)
+        return PartyViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: PartyViewHolder, position: Int) {
+        holder.itemText.text = getItem(position)
     }
 
     companion object DiffCallBack: DiffUtil.ItemCallback<String>() {
@@ -31,4 +38,5 @@ class PartyAdapter : ListAdapter<String, PartyAdapter.ViewHolder>(DiffCallBack){
             return oldItem == newItem
         }
     }
+
 }
