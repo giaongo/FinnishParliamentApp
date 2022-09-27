@@ -7,6 +7,11 @@
     <string name="user_comment_label"><u>Your Reviews</u></string>
     <string name="comment_add_button">Add</string>
 
+<!--PartyListFragment-->
+    <string name="party_name_text">%s</string>
+    <string name="member_name_text">%1s %s</string>
+
+
 <!-- AddReviewFragment   -->
     <string name="rating_label">Your Rating</string>
     <string name="comment_label">Your Comment</string>

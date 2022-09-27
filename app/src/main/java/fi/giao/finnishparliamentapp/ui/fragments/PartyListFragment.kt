@@ -15,6 +15,7 @@ import fi.giao.finnishparliamentapp.adapter.PartyAdapter
 import fi.giao.finnishparliamentapp.databinding.FragmentPartyListBinding
 import fi.giao.finnishparliamentapp.viewmodel.MemberViewModel
 import fi.giao.finnishparliamentapp.viewmodel.MemberViewModelFactory
+import fi.giao.finnishparliamentapp.viewmodel.ParliamentFunctions
 
 class PartyListFragment : Fragment() {
     private lateinit var binding: FragmentPartyListBinding
@@ -32,7 +33,7 @@ class PartyListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val memberAdapter = PartyAdapter{
-            val action = PartyListFragmentDirections.actionPartyListFragmentToMemberListFragment(it)
+            val action = PartyListFragmentDirections.actionPartyListFragmentToMemberListFragment(party = it)
             view.findNavController().navigate(action)
         }
 
@@ -40,12 +41,9 @@ class PartyListFragment : Fragment() {
             adapter = memberAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
-        viewModel.memberList.observe(viewLifecycleOwner) { list ->
-            run {
-                Toast.makeText(requireContext(),"Total: ${list.size}",Toast.LENGTH_SHORT).show()
-                val partyList = list.map { it.party }.toSet().toList().sorted()
-                memberAdapter.submitList(partyList)
-            }
+        viewModel.memberList.observe(viewLifecycleOwner) {
+            val partyList = ParliamentFunctions.listParty(it)
+            memberAdapter.submitList(partyList)
         }
 
     }
