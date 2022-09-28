@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import fi.giao.finnishparliamentapp.adapter.MemberAdapter
 import fi.giao.finnishparliamentapp.databinding.FragmentMemberListBinding
@@ -17,18 +18,15 @@ import fi.giao.finnishparliamentapp.viewmodel.MemberListViewModelFactory
 class MemberListFragment : Fragment() {
     private lateinit var binding: FragmentMemberListBinding
 
-    companion object {
-        private const val PARTY = "party"
-    }
-
     private val viewModel: MemberListViewModel by viewModels {
         MemberListViewModelFactory(requireActivity().application)
     }
+    private val safeArgs: MemberListFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            viewModel.setParty(it.getString(PARTY).toString())
+            viewModel.setParty(safeArgs.party)
         }
     }
 
