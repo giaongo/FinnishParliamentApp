@@ -17,4 +17,6 @@ class AppRepository(private val database: AppDatabase) {
             database.memberDAO.insertAllMembers(memberList)
         }
     }
+
+    fun getMembersFromParty(party:String) = database.memberDAO.getMembersFromParty(party)
 }
