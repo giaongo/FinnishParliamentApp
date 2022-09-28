@@ -10,12 +10,12 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import fi.giao.finnishparliamentapp.adapter.PartyAdapter
 import fi.giao.finnishparliamentapp.databinding.FragmentPartyListBinding
-import fi.giao.finnishparliamentapp.viewmodel.MemberViewModel
+import fi.giao.finnishparliamentapp.viewmodel.AppViewModel
 import fi.giao.finnishparliamentapp.viewmodel.MemberViewModelFactory
 
 class PartyListFragment : Fragment() {
     private lateinit var binding: FragmentPartyListBinding
-    private val viewModel: MemberViewModel by activityViewModels {
+    private val viewModel: AppViewModel by activityViewModels {
         MemberViewModelFactory(requireActivity().application)
     }
     override fun onCreateView(

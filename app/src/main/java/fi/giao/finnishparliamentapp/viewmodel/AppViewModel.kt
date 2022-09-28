@@ -8,14 +8,21 @@ import fi.giao.finnishparliamentapp.repository.AppRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-class MemberViewModel(application: Application): AndroidViewModel(application) {
+/**
+ * This AppViewModel class is scoped to the activity. It means that all fragments reference to
+ * the same view model objects throughout the app.
+ *
+ * This method has been discussed with Peter Hjort in the class on 28/9
+ * Reference: "Share data between fragments"
+ * https://developer.android.com/topic/libraries/architecture/viewmodel
+ */
+class AppViewModel(application: Application): AndroidViewModel(application) {
 
     private val appRepository =  AppRepository(AppDatabase.getInstance(application))
 
     private val _status = MutableLiveData<String>()
     val status:LiveData<String> = _status
 
-    /* For getting partyList LiveData from the memberList LiveData */
     private val memberList:LiveData<List<ParliamentMember>> =  appRepository.getAllMembers()
     val partyList:LiveData<List<String>> = Transformations.map(memberList) {
             list -> ParliamentFunctions.listParty(list)

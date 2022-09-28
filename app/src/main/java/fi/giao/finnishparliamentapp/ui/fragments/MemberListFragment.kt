@@ -10,9 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import fi.giao.finnishparliamentapp.adapter.MemberAdapter
 import fi.giao.finnishparliamentapp.databinding.FragmentMemberListBinding
-import fi.giao.finnishparliamentapp.viewmodel.MemberViewModel
+import fi.giao.finnishparliamentapp.viewmodel.AppViewModel
 import fi.giao.finnishparliamentapp.viewmodel.MemberViewModelFactory
-import fi.giao.finnishparliamentapp.viewmodel.ParliamentFunctions
 
 class MemberListFragment : Fragment() {
     private lateinit var binding:FragmentMemberListBinding
@@ -21,7 +20,7 @@ class MemberListFragment : Fragment() {
     companion object {
         private const val PARTY = "party"
     }
-    private val viewModel:MemberViewModel by activityViewModels {
+    private val viewModel:AppViewModel by activityViewModels {
         MemberViewModelFactory(requireActivity().application)
     }
 
@@ -51,15 +50,6 @@ class MemberListFragment : Fragment() {
             adapter = memberAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
-
-//        viewModel.memberList.observe(viewLifecycleOwner) {
-//            val memberListFromParty = ParliamentFunctions.listMemberFromParty(it,requestedParty)
-//            memberAdapter.submitList(memberListFromParty)
-//        }
-
-//        viewModel.getMemberListFromParty(requestedParty).observe(viewLifecycleOwner) {
-//            memberAdapter.submitList(it)
-//        }
 
         viewModel.memberListFromParty.observe(viewLifecycleOwner) {
             memberAdapter.submitList(it)

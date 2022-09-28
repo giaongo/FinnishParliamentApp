@@ -10,8 +10,8 @@ import java.lang.IllegalArgumentException
  */
 class MemberViewModelFactory(val app: Application): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return if(modelClass.isAssignableFrom(MemberViewModel::class.java))  {
-            MemberViewModel(this.app) as T
+        return if(modelClass.isAssignableFrom(AppViewModel::class.java))  {
+            AppViewModel(this.app) as T
         } else {
             throw IllegalArgumentException("ViewModel not found")
         }
