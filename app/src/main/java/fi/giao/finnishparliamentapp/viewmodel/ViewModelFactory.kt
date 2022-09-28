@@ -8,7 +8,7 @@ import java.lang.IllegalArgumentException
 /**
  * Factory for constructing MemberViewModel with parameter
  */
-class MemberViewModelFactory(val app: Application): ViewModelProvider.Factory {
+class ViewModelFactory(val app: Application): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return if(modelClass.isAssignableFrom(AppViewModel::class.java))  {
             AppViewModel(this.app) as T

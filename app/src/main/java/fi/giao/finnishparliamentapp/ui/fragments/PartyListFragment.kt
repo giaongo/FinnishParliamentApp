@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import fi.giao.finnishparliamentapp.adapter.PartyAdapter
 import fi.giao.finnishparliamentapp.databinding.FragmentPartyListBinding
 import fi.giao.finnishparliamentapp.viewmodel.AppViewModel
-import fi.giao.finnishparliamentapp.viewmodel.MemberViewModelFactory
+import fi.giao.finnishparliamentapp.viewmodel.ViewModelFactory
 
 class PartyListFragment : Fragment() {
     private lateinit var binding: FragmentPartyListBinding
     private val viewModel: AppViewModel by activityViewModels {
-        MemberViewModelFactory(requireActivity().application)
+        ViewModelFactory(requireActivity().application)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

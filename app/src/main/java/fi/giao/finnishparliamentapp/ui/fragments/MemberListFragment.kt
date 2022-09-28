@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import fi.giao.finnishparliamentapp.adapter.MemberAdapter
 import fi.giao.finnishparliamentapp.databinding.FragmentMemberListBinding
 import fi.giao.finnishparliamentapp.viewmodel.AppViewModel
-import fi.giao.finnishparliamentapp.viewmodel.MemberViewModelFactory
+import fi.giao.finnishparliamentapp.viewmodel.ViewModelFactory
 
 class MemberListFragment : Fragment() {
     private lateinit var binding:FragmentMemberListBinding
@@ -21,7 +21,7 @@ class MemberListFragment : Fragment() {
         private const val PARTY = "party"
     }
     private val viewModel:AppViewModel by activityViewModels {
-        MemberViewModelFactory(requireActivity().application)
+        ViewModelFactory(requireActivity().application)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +41,6 @@ class MemberListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.setRequestedParty(requestedParty)
 
         val memberAdapter = MemberAdapter({
             Toast.makeText(requireContext(),"${it.firstname} is clicked", Toast.LENGTH_SHORT).show()
@@ -51,7 +50,7 @@ class MemberListFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        viewModel.memberListFromParty.observe(viewLifecycleOwner) {
+        viewModel.getMemberListFromParty(requestedParty).observe(viewLifecycleOwner) {
             memberAdapter.submitList(it)
         }
     }
