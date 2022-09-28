@@ -5,18 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import fi.giao.finnishparliamentapp.adapter.PartyAdapter
 import fi.giao.finnishparliamentapp.databinding.FragmentPartyListBinding
-import fi.giao.finnishparliamentapp.viewmodel.AppViewModel
-import fi.giao.finnishparliamentapp.viewmodel.ViewModelFactory
+import fi.giao.finnishparliamentapp.viewmodel.PartyListViewModel
+import fi.giao.finnishparliamentapp.viewmodel.PartyListViewModelFactory
 
 class PartyListFragment : Fragment() {
     private lateinit var binding: FragmentPartyListBinding
-    private val viewModel: AppViewModel by activityViewModels {
-        ViewModelFactory(requireActivity().application)
+    private val viewModel: PartyListViewModel by viewModels {
+        PartyListViewModelFactory(requireActivity().application)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

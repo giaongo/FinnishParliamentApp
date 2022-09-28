@@ -6,28 +6,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import fi.giao.finnishparliamentapp.adapter.MemberAdapter
 import fi.giao.finnishparliamentapp.databinding.FragmentMemberListBinding
-import fi.giao.finnishparliamentapp.viewmodel.AppViewModel
-import fi.giao.finnishparliamentapp.viewmodel.ViewModelFactory
+import fi.giao.finnishparliamentapp.viewmodel.MemberListViewModel
+import fi.giao.finnishparliamentapp.viewmodel.MemberListViewModelFactory
+
 
 class MemberListFragment : Fragment() {
-    private lateinit var binding:FragmentMemberListBinding
-    private lateinit var requestedParty: String
+    private lateinit var binding: FragmentMemberListBinding
 
     companion object {
         private const val PARTY = "party"
     }
-    private val viewModel:AppViewModel by activityViewModels {
-        ViewModelFactory(requireActivity().application)
+
+    private val viewModel: MemberListViewModel by viewModels {
+        MemberListViewModelFactory(requireActivity().application)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            requestedParty = it.getString(PARTY).toString()
+            viewModel.setParty(it.getString(PARTY).toString())
         }
     }
 
@@ -35,7 +36,7 @@ class MemberListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMemberListBinding.inflate(layoutInflater,container,false)
+        binding = FragmentMemberListBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -43,14 +44,15 @@ class MemberListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val memberAdapter = MemberAdapter({
-            Toast.makeText(requireContext(),"${it.firstname} is clicked", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "${it.firstname} is clicked", Toast.LENGTH_SHORT)
+                .show()
         }, requireContext())
         binding.memberListRecyclerView.apply {
             adapter = memberAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        viewModel.getMemberListFromParty(requestedParty).observe(viewLifecycleOwner) {
+        viewModel.memberListFromParty.observe(viewLifecycleOwner) {
             memberAdapter.submitList(it)
         }
     }
