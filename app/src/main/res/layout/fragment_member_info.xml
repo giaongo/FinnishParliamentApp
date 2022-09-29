@@ -61,25 +61,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:id="@+id/comment_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/user_comment_label"
+                    android:text="@string/user_review_text_label"
                     android:layout_gravity="center"
                     android:layout_margin="16dp"/>
 
                 <Button
-                    android:id="@+id/comment_add_button"
+                    android:id="@+id/review_add_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/comment_add_button"/>
+                    android:text="@string/review_add_button"/>
             </LinearLayout>
 
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/user_comments_recycler_view"
+                android:id="@+id/user_reviews_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false"

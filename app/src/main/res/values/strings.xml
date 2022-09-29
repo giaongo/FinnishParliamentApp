@@ -1,16 +1,15 @@
 <resources>
     <string name="app_name">Finnish Parliament App</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="member_name">%1s %2s</string>
-    <string name="member_party">%s</string>
-    <string name="user_comment_label"><u>Your Reviews</u></string>
-    <string name="comment_add_button">Add</string>
+
 
 <!--MemberInfoFragment-->
     <string name="party_name_text">%s</string>
-    <string name="member_name_text">%1s %s</string>
-
+    <string name="member_name_text">%1s %2s</string>
+    <string name="user_review_text_label"><u>Your Reviews</u></string>
+    <string name="review_add_button">Add</string>
+    <string name="review_text">%s</string>
+    <string name="review_timestamp">Created at: %s</string>
 
 <!-- AddReviewFragment   -->
     <string name="rating_label">Your Rating</string>
@@ -23,5 +22,6 @@
     <string name="born_year_text">Born Year: %d</string>
     <string name="constituency_text">Constituency: %s</string>
     <string name="twitter_text"><a>Twitter:</a> %s</string>
+
 
 </resources>

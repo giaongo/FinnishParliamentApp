@@ -39,5 +39,13 @@
         <argument
             android:name="requestedMember"
             app:argType="fi.giao.finnishparliamentapp.database.ParliamentMember" />
+        <action
+            android:id="@+id/action_memberInfoFragment_to_addReviewFragment"
+            app:destination="@id/addReviewFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addReviewFragment"
+        android:name="fi.giao.finnishparliamentapp.ui.fragments.AddReviewFragment"
+        android:label="fragment_add_review"
+        tools:layout="@layout/fragment_add_review" />
 </navigation>

@@ -18,13 +18,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatRatingBar
-        android:id="@+id/add_rating_bar"
+        android:id="@+id/star_rating_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
         android:numStars="5"
-        android:rating="4.5"
         android:stepSize="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.367"
@@ -41,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/rating_label"
-        app:layout_constraintTop_toBottomOf="@+id/add_rating_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/star_rating_bar" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
