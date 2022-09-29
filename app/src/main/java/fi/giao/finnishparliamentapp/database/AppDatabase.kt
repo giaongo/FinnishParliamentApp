@@ -5,9 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [ParliamentMember::class], version = 1, exportSchema = false)
+@Database(entities = [ParliamentMember::class, MemberReview::class], version = 1, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
-    abstract val memberDAO: MemberDAO
+    abstract val memberDao: MemberDao
+    abstract val reviewDao: ReviewDao
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
