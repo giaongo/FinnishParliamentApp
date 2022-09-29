@@ -5,9 +5,10 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import fi.giao.finnishparliamentapp.database.ParliamentMember
 
 @Dao
-interface MemberDAO {
+interface MemberDao {
     @Query("SELECT * FROM ParliamentMember")
     fun getAllMembers(): LiveData<List<ParliamentMember>>
 
