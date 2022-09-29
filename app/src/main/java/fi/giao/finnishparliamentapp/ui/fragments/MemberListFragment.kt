@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import fi.giao.finnishparliamentapp.adapter.MemberAdapter
@@ -44,6 +45,8 @@ class MemberListFragment : Fragment() {
         val memberAdapter = MemberAdapter({
             Toast.makeText(requireContext(), "${it.firstname} is clicked", Toast.LENGTH_SHORT)
                 .show()
+            val action = MemberListFragmentDirections.actionMemberListFragmentToMemberInfoFragment(requestedMember = it)
+            view.findNavController().navigate(action)
         }, requireContext())
         binding.memberListRecyclerView.apply {
             adapter = memberAdapter

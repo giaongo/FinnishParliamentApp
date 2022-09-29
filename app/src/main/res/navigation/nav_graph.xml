@@ -35,5 +35,9 @@
         android:id="@+id/memberInfoFragment"
         android:name="fi.giao.finnishparliamentapp.ui.fragments.MemberInfoFragment"
         android:label="fragment_member_info"
-        tools:layout="@layout/fragment_member_info" />
+        tools:layout="@layout/fragment_member_info" >
+        <argument
+            android:name="requestedMember"
+            app:argType="fi.giao.finnishparliamentapp.database.ParliamentMember" />
+    </fragment>
 </navigation>

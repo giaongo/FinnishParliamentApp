@@ -1,8 +1,12 @@
 package fi.giao.finnishparliamentapp.database
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
+
+@Parcelize
 @Entity
 data class ParliamentMember (
     @PrimaryKey
@@ -13,4 +17,4 @@ data class ParliamentMember (
     val party: String,
     val minister: Boolean,
     val pictureUrl: String
-)
+): Parcelable
