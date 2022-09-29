@@ -18,11 +18,11 @@ class PartyListViewModel(application: Application): AndroidViewModel(application
 
     private val _status = MutableLiveData<String>()
     val status: LiveData<String> = _status
+    private val memberList: LiveData<List<ParliamentMember>> =  appRepository.getAllMembers()
 
     /**
      * Use Transformations.map to get list of party from list of members as LiveData
      */
-    private val memberList: LiveData<List<ParliamentMember>> =  appRepository.getAllMembers()
     val partyList: LiveData<List<String>> = Transformations.map(memberList) { list ->
         ParliamentFunctions.listParty(list)
     }
