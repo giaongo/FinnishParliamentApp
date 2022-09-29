@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
@@ -18,7 +19,7 @@ import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModelFactory
 private const val IMG_BASE_URL = "https://avoindata.eduskunta.fi/"
 class MemberInfoFragment : Fragment() {
     private lateinit var binding: FragmentMemberInfoBinding
-    private val viewModel:MemberInfoViewModel by viewModels {
+    private val viewModel:MemberInfoViewModel by activityViewModels {
         MemberInfoViewModelFactory(requireActivity().application)
     }
     private val safeArgs: MemberInfoFragmentArgs by navArgs()
@@ -50,7 +51,7 @@ class MemberInfoFragment : Fragment() {
         Glide.with(this).load(IMG_BASE_URL + currentMember.pictureUrl).into(binding.memberImageView)
 
         binding.reviewAddButton.setOnClickListener {
-            val action = MemberInfoFragmentDirections.actionMemberInfoFragmentToAddReviewFragment()
+            val action = MemberInfoFragmentDirections.actionMemberInfoFragmentToAddReviewFragment(currentMember.hetekaId)
             view.findNavController().navigate(action)
         }
 

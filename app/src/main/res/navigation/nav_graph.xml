@@ -47,5 +47,9 @@
         android:id="@+id/addReviewFragment"
         android:name="fi.giao.finnishparliamentapp.ui.fragments.AddReviewFragment"
         android:label="fragment_add_review"
-        tools:layout="@layout/fragment_add_review" />
+        tools:layout="@layout/fragment_add_review" >
+        <argument
+            android:name="hetekaId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
