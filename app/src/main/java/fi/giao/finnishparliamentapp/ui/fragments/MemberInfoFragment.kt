@@ -9,8 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import fi.giao.finnishparliamentapp.R
+import fi.giao.finnishparliamentapp.adapter.ReviewAdapter
 import fi.giao.finnishparliamentapp.database.ParliamentMember
 import fi.giao.finnishparliamentapp.databinding.FragmentMemberInfoBinding
 import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModel
@@ -55,6 +57,15 @@ class MemberInfoFragment : Fragment() {
             view.findNavController().navigate(action)
         }
 
-
+        // Set hetekaId of current member to viewModel to activate the switchMap in viewModel
+        viewModel.setHetekaId(currentMember.hetekaId)
+        val reviewAdapter = ReviewAdapter(requireContext())
+        viewModel.allReviewsByHetekaId.observe(viewLifecycleOwner) {
+            reviewAdapter.submitList(it)
+        }
+        binding.userReviewsRecyclerView.apply {
+            adapter = reviewAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
     }
 }

@@ -2,7 +2,6 @@ package fi.giao.finnishparliamentapp.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import retrofit2.http.DELETE
 
 @Dao
 interface ReviewDao {
@@ -15,6 +14,6 @@ interface ReviewDao {
     @Update
     suspend fun updateReview(memberReview: MemberReview)
 
-    @DELETE
+    @Delete
     suspend fun deleteReview(memberReview: MemberReview)
 }

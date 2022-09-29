@@ -8,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import fi.giao.finnishparliamentapp.R
 import fi.giao.finnishparliamentapp.database.MemberReview
 import fi.giao.finnishparliamentapp.databinding.FragmentAddReviewBinding
 import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModel
@@ -50,6 +53,8 @@ class AddReviewFragment : Fragment() {
                 val rating = starRatingBar.rating
                 val comment = addCommentEditText.text.toString()
                 viewModel.insertReview(MemberReview(0,receivedHetekaId,rating,comment,timeStamp))
+                //Pop this fragment out of the backstack
+                findNavController().popBackStack(R.id.addReviewFragment,true)
             }
         }
 
