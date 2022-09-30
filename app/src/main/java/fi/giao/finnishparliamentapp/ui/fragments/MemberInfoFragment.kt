@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -71,7 +71,10 @@ class MemberInfoFragment : Fragment() {
     private fun displayReviews() {
         // Set hetekaId of current member to viewModel to activate the switchMap in viewModel
         viewModel.setHetekaId(currentMember.hetekaId)
-        val reviewAdapter = ReviewAdapter(requireContext())
+        val reviewAdapter = ReviewAdapter(requireContext()) {
+            Toast.makeText(requireContext(),"${it.comment} is clicked",Toast.LENGTH_SHORT).show()
+        }
+
         viewModel.allReviewsByHetekaId.observe(viewLifecycleOwner) {
             reviewAdapter.submitList(it)
         }

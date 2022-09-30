@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_memberInfoFragment_to_addReviewFragment"
             app:destination="@id/addReviewFragment" />
+        <action
+            android:id="@+id/action_memberInfoFragment_to_updateReviewFragment2"
+            app:destination="@id/updateReviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/addReviewFragment"
@@ -51,5 +54,14 @@
         <argument
             android:name="hetekaId"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateReviewFragment"
+        android:name="fi.giao.finnishparliamentapp.ui.fragments.UpdateReviewFragment"
+        android:label="fragment_update_review"
+        tools:layout="@layout/fragment_update_review" >
+        <argument
+            android:name="requestedReview"
+            app:argType="fi.giao.finnishparliamentapp.database.MemberReview" />
     </fragment>
 </navigation>

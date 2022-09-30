@@ -12,10 +12,15 @@ import fi.giao.finnishparliamentapp.databinding.ReviewBinding
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 
-class ReviewAdapter(val context: Context): ListAdapter<MemberReview, ReviewAdapter.ReviewViewHolder>(ReviewDiffCallBack) {
+class ReviewAdapter(val context: Context, private val listener: (MemberReview) -> Unit): ListAdapter<MemberReview, ReviewAdapter.ReviewViewHolder>(ReviewDiffCallBack) {
     inner class ReviewViewHolder(private val binding: ReviewBinding):RecyclerView.ViewHolder(binding.root) {
         private val simpleDateFormat = SimpleDateFormat("HH:mm" + "-dd.MM.yyyy")
 
+        init {
+            binding.root.setOnClickListener {
+                listener(getItem(adapterPosition))
+            }
+        }
         fun bindData(review:MemberReview) {
             val timestamp = simpleDateFormat.format(Timestamp(review.timeStamp))
             binding.apply {
