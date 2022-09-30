@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -72,7 +73,8 @@ class MemberInfoFragment : Fragment() {
         // Set hetekaId of current member to viewModel to activate the switchMap in viewModel
         viewModel.setHetekaId(currentMember.hetekaId)
         val reviewAdapter = ReviewAdapter(requireContext()) {
-            Toast.makeText(requireContext(),"${it.comment} is clicked",Toast.LENGTH_SHORT).show()
+            val action = MemberInfoFragmentDirections.actionMemberInfoFragmentToUpdateReviewFragment2(it)
+            findNavController().navigate(action)
         }
 
         viewModel.allReviewsByHetekaId.observe(viewLifecycleOwner) {

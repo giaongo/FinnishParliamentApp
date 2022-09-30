@@ -8,7 +8,7 @@ import fi.giao.finnishparliamentapp.repository.AppRepository
 import kotlinx.coroutines.launch
 
 /**
- * This view model will be referenced by 2 fragments (MemberInfoFragment and AddReviewFragment)
+ * This view model will be referenced by 3 fragments (MemberInfoFragment, AddReviewFragment and UpdateReviewFragment)
  * This view model once created will be scoped to MainActivity.
  *
  * This method of sharing view model has been discussed with teacher Peter in class and got

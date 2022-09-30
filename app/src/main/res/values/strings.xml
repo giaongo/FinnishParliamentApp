@@ -23,5 +23,8 @@
     <string name="constituency_text">Constituency: %s</string>
     <string name="twitter_text"><a>Twitter:</a> %s</string>
 
+    <!-- UpdateReviewFragment-->
+    <string name="update_button">Update Review</string>
+
 
 </resources>
