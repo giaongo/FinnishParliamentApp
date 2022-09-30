@@ -25,6 +25,7 @@
 
     <!-- UpdateReviewFragment-->
     <string name="update_button">Update Review</string>
+    <string name="delete_review">Delete this review</string>
 
 
 </resources>

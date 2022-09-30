@@ -1,10 +1,9 @@
 package fi.giao.finnishparliamentapp.ui.fragments
 
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -22,6 +21,12 @@ class UpdateReviewFragment : Fragment() {
         MemberInfoViewModelFactory(requireActivity().application)
     }
     private lateinit var currentReview:MemberReview
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,5 +53,21 @@ class UpdateReviewFragment : Fragment() {
         currentReview.timeStamp)
         viewModel.updateReview(updatedReview)
         findNavController().popBackStack(R.id.updateReviewFragment,true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.update_fragment_menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.delete_review -> {
+                viewModel.deleteReview(currentReview)
+                Toast.makeText(requireContext(),"Review: ${currentReview.comment} is deleted", Toast.LENGTH_SHORT).show()
+                findNavController().popBackStack(R.id.updateReviewFragment,true)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
