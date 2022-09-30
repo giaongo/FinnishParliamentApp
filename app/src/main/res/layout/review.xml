@@ -3,46 +3,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="8dp">
 
     <RatingBar
         android:id="@+id/review_rating_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="16dp"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        style="?android:ratingBarStyleSmall"
+        android:progressTint="@color/star_yellow"
+        android:secondaryProgressTint="@color/star_yellow"
+        android:progressBackgroundTint="@color/black"
+        tools:rating="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.098"
         android:isIndicator="true"/>
+
     <TextView
         android:id="@+id/review_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        tools:text ="This member is the best"
-        android:textSize="18sp"
+        android:layout_marginStart="16dp"
         android:textColor="@color/black"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/review_rating_bar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintStart_toEndOf="@+id/review_rating_bar"
         app:layout_constraintTop_toTopOf="@+id/review_rating_bar"
-        app:layout_constraintVertical_bias="0.56" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="This member is the best" />
 
     <TextView
         android:id="@+id/review_timestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/review_text_view"
         app:layout_constraintTop_toBottomOf="@+id/review_text_view"
         app:layout_constraintVertical_bias="0.0"
-        tools:text="created at 20:11-29.9.2022 " />
+        tools:text="created at 20:11-29.9.2022" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
