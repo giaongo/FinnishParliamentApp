@@ -18,9 +18,26 @@ class MemberInfoViewModel(application: Application): AndroidViewModel(applicatio
     private val appRepository = AppRepository(AppDatabase.getInstance(application))
     private val hetekaId = MutableLiveData<Int>()
 
+    /* get list of MemberReview as a LiveData based on the change of hetekaId and changing in value
+    * of appRepository.getAllReviewsByHetekaId(id) */
     val allReviewsByHetekaId: LiveData<List<MemberReview>> = Transformations.switchMap(hetekaId) {
         id -> appRepository.getAllReviewsByHetekaId(id)
     }
+
+    /* Get list of rating from list of all reviews
+     */
+    private val allRatings:LiveData<List<Float>> = Transformations.map(allReviewsByHetekaId) {
+       listReview -> ParliamentFunctions.listRating(listReview)
+    }
+
+    /**
+     * Get averageRating as a LiveData depending on the change of allRatings LiveData
+     */
+    val averageRating: LiveData<Float> = Transformations.map(allRatings) {
+            it.average().toFloat()
+    }
+
+
     fun setHetekaId(id:Int) {
         hetekaId.value = id
     }

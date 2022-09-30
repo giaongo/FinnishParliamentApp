@@ -67,5 +67,15 @@ class MemberInfoFragment : Fragment() {
             adapter = reviewAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
+        updateRating()
+    }
+
+    private fun updateRating() {
+        viewModel.averageRating.observe(viewLifecycleOwner) {
+            binding.memberRatingBar.rating = it
+
+        }
+
+
     }
 }
