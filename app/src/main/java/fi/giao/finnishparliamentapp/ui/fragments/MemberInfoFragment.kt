@@ -19,9 +19,10 @@ import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModel
 import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModelFactory
 
 private const val IMG_BASE_URL = "https://avoindata.eduskunta.fi/"
+
 class MemberInfoFragment : Fragment() {
     private lateinit var binding: FragmentMemberInfoBinding
-    private val viewModel:MemberInfoViewModel by activityViewModels {
+    private val viewModel: MemberInfoViewModel by activityViewModels {
         MemberInfoViewModelFactory(requireActivity().application)
     }
     private val safeArgs: MemberInfoFragmentArgs by navArgs()
@@ -42,6 +43,20 @@ class MemberInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        displayMemberInfo()
+        displayReviews()
+        updateRating()
+
+        binding.reviewAddButton.setOnClickListener {
+            val action = MemberInfoFragmentDirections.actionMemberInfoFragmentToAddReviewFragment(
+                currentMember.hetekaId
+            )
+            view.findNavController().navigate(action)
+        }
+    }
+
+    private fun displayMemberInfo() {
         binding.apply {
             memberNameTextView.text = getString(
                 R.string.member_name_text, currentMember.firstname,
@@ -51,12 +66,9 @@ class MemberInfoFragment : Fragment() {
         }
         // Fetch image data from network and bind it into imageView
         Glide.with(this).load(IMG_BASE_URL + currentMember.pictureUrl).into(binding.memberImageView)
+    }
 
-        binding.reviewAddButton.setOnClickListener {
-            val action = MemberInfoFragmentDirections.actionMemberInfoFragmentToAddReviewFragment(currentMember.hetekaId)
-            view.findNavController().navigate(action)
-        }
-
+    private fun displayReviews() {
         // Set hetekaId of current member to viewModel to activate the switchMap in viewModel
         viewModel.setHetekaId(currentMember.hetekaId)
         val reviewAdapter = ReviewAdapter(requireContext())
@@ -67,15 +79,11 @@ class MemberInfoFragment : Fragment() {
             adapter = reviewAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
-        updateRating()
     }
 
     private fun updateRating() {
         viewModel.averageRating.observe(viewLifecycleOwner) {
             binding.memberRatingBar.rating = it
-
         }
-
-
     }
 }

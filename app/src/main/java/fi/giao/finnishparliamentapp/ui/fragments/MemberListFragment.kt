@@ -43,8 +43,6 @@ class MemberListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val memberAdapter = MemberAdapter({
-            Toast.makeText(requireContext(), "${it.firstname} is clicked", Toast.LENGTH_SHORT)
-                .show()
             val action = MemberListFragmentDirections.actionMemberListFragmentToMemberInfoFragment(requestedMember = it)
             view.findNavController().navigate(action)
         }, requireContext())
