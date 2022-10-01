@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/partyListFragment">
+    app:startDestination="@id/introAppFragment">
 
     <fragment
         android:id="@+id/introAppFragment"
         android:name="fi.giao.finnishparliamentapp.ui.fragments.IntroAppFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_intro_app" />
+        tools:layout="@layout/fragment_intro_app" >
+        <action
+            android:id="@+id/action_introAppFragment_to_partyListFragment"
+            app:destination="@id/partyListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/partyListFragment"
         android:name="fi.giao.finnishparliamentapp.ui.fragments.PartyListFragment"

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/view_favorite"
+        android:icon="@drawable/heart_icon"
+        android:title="@string/favorite_bottom_menu" />
+    <item
+        android:id="@+id/view_parties"
+        android:icon="@drawable/view_party_icon"
+        android:title="@string/parties_bottom_menu"
+        />
+</menu>

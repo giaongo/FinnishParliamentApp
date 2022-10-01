@@ -34,6 +34,9 @@
     <string name="update_button">Update Review</string>
     <string name="delete_review">Delete this review</string>
 
+    <!--IntroAppFragment-->
+    <string name="favorite_bottom_menu">View Favorite</string>
+    <string name="parties_bottom_menu">View Parties</string>
 
 
 
