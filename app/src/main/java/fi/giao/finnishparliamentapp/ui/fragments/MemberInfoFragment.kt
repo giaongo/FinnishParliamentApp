@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import fi.giao.finnishparliamentapp.R
 import fi.giao.finnishparliamentapp.adapter.ReviewAdapter
 import fi.giao.finnishparliamentapp.database.MemberFavorite
@@ -80,7 +81,7 @@ class MemberInfoFragment : Fragment() {
             memberPartyTextView.text = getString(R.string.party_name_text, currentMember.party)
         }
         // Fetch image data from network and bind it into imageView
-        Glide.with(this).load(IMG_BASE_URL + currentMember.pictureUrl).into(binding.memberImageView)
+        cacheImage()
     }
 
     private fun displayReviews() {
@@ -106,6 +107,14 @@ class MemberInfoFragment : Fragment() {
         }
     }
 
+    private fun cacheImage() {
+        Glide.with(this)
+            .load(IMG_BASE_URL + currentMember.pictureUrl)
+            .placeholder(R.drawable.loading_icon)
+            .error(R.drawable.error_icon)
+            .into(binding.memberImageView)
+
+    }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.member_info_fragment_menu,menu)
     }
