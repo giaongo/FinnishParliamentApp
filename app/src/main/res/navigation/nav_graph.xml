@@ -8,12 +8,12 @@
     <fragment
         android:id="@+id/introAppFragment"
         android:name="fi.giao.finnishparliamentapp.ui.fragments.IntroAppFragment"
-        android:label="fragment_intro_app"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_intro_app" />
     <fragment
         android:id="@+id/partyListFragment"
         android:name="fi.giao.finnishparliamentapp.ui.fragments.PartyListFragment"
-        android:label="fragment_party_list"
+        android:label="@string/party_list_fragment_label"
         tools:layout="@layout/fragment_party_list" >
         <action
             android:id="@+id/action_partyListFragment_to_memberListFragment"
@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/memberListFragment"
         android:name="fi.giao.finnishparliamentapp.ui.fragments.MemberListFragment"
-        android:label="fragment_member_list"
+        android:label="@string/member_list_fragment_label"
         tools:layout="@layout/fragment_member_list" >
         <argument
             android:name="party"
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/memberInfoFragment"
         android:name="fi.giao.finnishparliamentapp.ui.fragments.MemberInfoFragment"
-        android:label="fragment_member_info"
+        android:label="@string/member_info_fragment_label"
         tools:layout="@layout/fragment_member_info" >
         <argument
             android:name="requestedMember"
@@ -49,7 +49,7 @@
     <fragment
         android:id="@+id/addReviewFragment"
         android:name="fi.giao.finnishparliamentapp.ui.fragments.AddReviewFragment"
-        android:label="fragment_add_review"
+        android:label="@string/add_review_fragment_label"
         tools:layout="@layout/fragment_add_review" >
         <argument
             android:name="hetekaId"
@@ -58,7 +58,7 @@
     <fragment
         android:id="@+id/updateReviewFragment"
         android:name="fi.giao.finnishparliamentapp.ui.fragments.UpdateReviewFragment"
-        android:label="fragment_update_review"
+        android:label="@string/update_review_fragment_label"
         tools:layout="@layout/fragment_update_review" >
         <argument
             android:name="requestedReview"
