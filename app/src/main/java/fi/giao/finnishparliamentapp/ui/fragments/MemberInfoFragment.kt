@@ -1,11 +1,14 @@
 package fi.giao.finnishparliamentapp.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
+import androidx.core.graphics.toColor
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -32,6 +35,7 @@ class MemberInfoFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         currentMember = safeArgs.requestedMember
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -89,6 +93,25 @@ class MemberInfoFragment : Fragment() {
     private fun updateRating() {
         viewModel.averageRating.observe(viewLifecycleOwner) {
             binding.memberRatingBar.rating = it
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.member_info_fragment_menu,menu)
+    }
+
+    /**
+     * Source for changing icon color when menu item is clicked
+     * Source: https://stackoverflow.com/questions/56716093/setcolorfilter-is-deprecated-on-api29
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.mark_favorite -> {
+                Toast.makeText(requireContext(),"clicked",Toast.LENGTH_SHORT).show()
+
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

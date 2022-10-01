@@ -10,6 +10,7 @@
     <string name="review_add_button">Add</string>
     <string name="review_text">%s</string>
     <string name="review_timestamp">Created at: %s</string>
+    <string name="mark_favorite">Mark as favorite</string>
 
     <!-- AddReviewFragment   -->
     <string name="rating_label">Your Rating</string>
@@ -26,6 +27,7 @@
     <!-- UpdateReviewFragment-->
     <string name="update_button">Update Review</string>
     <string name="delete_review">Delete this review</string>
+
 
 
 </resources>
