@@ -63,7 +63,7 @@ class UpdateReviewFragment : Fragment() {
         return when(item.itemId) {
             R.id.delete_review -> {
                 viewModel.deleteReview(currentReview)
-                Toast.makeText(requireContext(),"Review: ${currentReview.comment} is deleted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),"Review: \"${currentReview.comment}\" is deleted", Toast.LENGTH_SHORT).show()
                 findNavController().popBackStack(R.id.updateReviewFragment,true)
                 true
             }

@@ -5,4 +5,9 @@
         android:title="@string/mark_favorite"
         app:iconTint="@color/white"
         app:showAsAction= "never" />
+
+    <item android:id="@+id/unMark_favorite"
+        android:title="@string/unMark_favorite"
+        app:iconTint="@color/white"
+        app:showAsAction= "never" />
 </menu>

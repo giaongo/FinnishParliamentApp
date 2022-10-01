@@ -3,16 +3,18 @@ package fi.giao.finnishparliamentapp.viewmodel
 import android.app.Application
 import androidx.lifecycle.*
 import fi.giao.finnishparliamentapp.database.AppDatabase
+import fi.giao.finnishparliamentapp.database.MemberFavorite
 import fi.giao.finnishparliamentapp.database.MemberReview
 import fi.giao.finnishparliamentapp.repository.AppRepository
 import kotlinx.coroutines.launch
 
 /**
  * This view model will be referenced by 3 fragments (MemberInfoFragment, AddReviewFragment and UpdateReviewFragment)
- * This view model once created will be scoped to MainActivity.
+ * This view model once created will be scoped to MainActivity and its properties and functions will
+ * be shared among these 3 fragments.
  *
- * This method of sharing view model has been discussed with teacher Peter in class and got
- * approval for usage for this application
+ * This method of sharing view model has been discussed with teacher Peter in class on 28/9 and got
+ * approval for usage in this particular application.
  */
 class MemberInfoViewModel(application: Application): AndroidViewModel(application) {
     private val appRepository = AppRepository(AppDatabase.getInstance(application))
@@ -51,6 +53,15 @@ class MemberInfoViewModel(application: Application): AndroidViewModel(applicatio
     fun deleteReview(review: MemberReview) = viewModelScope.launch {
         appRepository.deleteReview(review)
     }
+
+    fun markFavorite(favoriteMember:MemberFavorite) = viewModelScope.launch {
+        appRepository.markFavorite(favoriteMember)
+    }
+
+    fun unMarkFavorite(hetekaId:Int) = viewModelScope.launch {
+        appRepository.unMarkFavorite(hetekaId)
+    }
+
 }
 
 class MemberInfoViewModelFactory(val app:Application): ViewModelProvider.Factory {
