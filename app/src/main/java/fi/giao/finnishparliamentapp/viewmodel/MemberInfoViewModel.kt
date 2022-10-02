@@ -1,6 +1,7 @@
 package fi.giao.finnishparliamentapp.viewmodel
 
 import android.app.Application
+import android.text.method.TransformationMethod
 import androidx.lifecycle.*
 import fi.giao.finnishparliamentapp.database.AppDatabase
 import fi.giao.finnishparliamentapp.database.MemberFavorite
@@ -37,6 +38,16 @@ class MemberInfoViewModel(application: Application): AndroidViewModel(applicatio
      */
     val averageRating: LiveData<Float> = Transformations.map(allRatings) {
             it.average().toFloat()
+    }
+
+    /**
+     * Get isMarkedFavorite as a LiveData to check whether the current member is marked as favorite
+     * or not
+     */
+    private val favoriteList: LiveData<List<MemberFavorite>> = appRepository.getAllFavorite()
+    val isMarkedFavorite: LiveData<Boolean> = Transformations.map(favoriteList) {
+            val hetekaIdList = ParliamentFunctions.listHetekaId(it)
+            ParliamentFunctions.checkValueInList(hetekaId.value,hetekaIdList)
     }
 
 

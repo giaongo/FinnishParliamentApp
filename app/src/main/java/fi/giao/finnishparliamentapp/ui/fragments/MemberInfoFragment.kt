@@ -41,7 +41,6 @@ class MemberInfoFragment : Fragment() {
     }
     private val safeArgs: MemberInfoFragmentArgs by navArgs()
     private lateinit var currentMember: ParliamentMember
-    private var isMarkFavorite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -127,12 +126,10 @@ class MemberInfoFragment : Fragment() {
         val currentFavoriteMember = MemberFavorite(0,currentMember.hetekaId,true)
         return when (item.itemId) {
             R.id.mark_favorite -> {
-                isMarkFavorite = true
                 viewModel.markFavorite(currentFavoriteMember)
                 true
             }
             R.id.unMark_favorite -> {
-                isMarkFavorite = false
                 viewModel.unMarkFavorite(currentMember.hetekaId)
                 true
             }
@@ -142,7 +139,9 @@ class MemberInfoFragment : Fragment() {
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
-        menu.findItem(R.id.unMark_favorite).isVisible = isMarkFavorite
-        menu.findItem(R.id.mark_favorite).isVisible = !isMarkFavorite
+        viewModel.isMarkedFavorite.observe(viewLifecycleOwner) {
+            menu.findItem(R.id.unMark_favorite).isVisible = it
+            menu.findItem(R.id.mark_favorite).isVisible = !it
+        }
     }
 }
