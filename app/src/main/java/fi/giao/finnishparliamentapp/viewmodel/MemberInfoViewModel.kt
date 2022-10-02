@@ -10,12 +10,9 @@ import fi.giao.finnishparliamentapp.repository.AppRepository
 import kotlinx.coroutines.launch
 
 /**
- * This view model will be referenced by 3 fragments (MemberInfoFragment, AddReviewFragment and UpdateReviewFragment)
- * This view model once created will be scoped to MainActivity and its properties and functions will
- * be shared among these 3 fragments.
+ * This view model will be referenced by MemberInfoFragment. It takes care of showing member info,
+ * calculating average rating and showing user reviews. Also, it allows user to mark favorite
  *
- * This method of sharing view model has been discussed with teacher Peter in class on 28/9 and got
- * approval for usage in this particular application.
  */
 class MemberInfoViewModel(application: Application): AndroidViewModel(application) {
     private val appRepository = AppRepository(AppDatabase.getInstance(application))
@@ -42,7 +39,7 @@ class MemberInfoViewModel(application: Application): AndroidViewModel(applicatio
 
     /**
      * Get isMarkedFavorite as a LiveData to check whether the current member is marked as favorite
-     * or not
+     * or not.
      */
     private val favoriteList: LiveData<List<MemberFavorite>> = appRepository.getAllFavorite()
     val isMarkedFavorite: LiveData<Boolean> = Transformations.map(favoriteList) {
@@ -50,19 +47,8 @@ class MemberInfoViewModel(application: Application): AndroidViewModel(applicatio
             ParliamentFunctions.checkValueInList(hetekaId.value,hetekaIdList)
     }
 
-
     fun setHetekaId(id:Int) {
         hetekaId.value = id
-    }
-
-    fun insertReview(review:MemberReview) = viewModelScope.launch {
-        appRepository.insertReview(review)
-    }
-    fun updateReview(review: MemberReview) = viewModelScope.launch {
-        appRepository.updateReview(review)
-    }
-    fun deleteReview(review: MemberReview) = viewModelScope.launch {
-        appRepository.deleteReview(review)
     }
 
     fun markFavorite(favoriteMember:MemberFavorite) = viewModelScope.launch {

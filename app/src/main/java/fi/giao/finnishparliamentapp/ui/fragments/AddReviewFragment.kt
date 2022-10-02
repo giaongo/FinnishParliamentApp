@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -16,11 +17,13 @@ import fi.giao.finnishparliamentapp.database.MemberReview
 import fi.giao.finnishparliamentapp.databinding.FragmentAddReviewBinding
 import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModel
 import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModelFactory
+import fi.giao.finnishparliamentapp.viewmodel.ReviewViewModel
+import fi.giao.finnishparliamentapp.viewmodel.ReviewViewModelFactory
 
 class AddReviewFragment : Fragment() {
     private lateinit var binding: FragmentAddReviewBinding
-    private val viewModel: MemberInfoViewModel by activityViewModels {
-        MemberInfoViewModelFactory(requireActivity().application)
+    private val viewModel: ReviewViewModel by viewModels {
+        ReviewViewModelFactory(requireActivity().application)
     }
 
     private val safeArgs:AddReviewFragmentArgs by navArgs()

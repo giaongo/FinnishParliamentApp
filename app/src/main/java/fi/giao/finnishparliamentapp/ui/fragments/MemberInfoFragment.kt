@@ -10,6 +10,7 @@ import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import androidx.core.graphics.toColor
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -36,7 +37,7 @@ private const val IMG_BASE_URL = "https://avoindata.eduskunta.fi/"
  */
 class MemberInfoFragment : Fragment() {
     private lateinit var binding: FragmentMemberInfoBinding
-    private val viewModel: MemberInfoViewModel by activityViewModels {
+    private val viewModel: MemberInfoViewModel by viewModels {
         MemberInfoViewModelFactory(requireActivity().application)
     }
     private val safeArgs: MemberInfoFragmentArgs by navArgs()

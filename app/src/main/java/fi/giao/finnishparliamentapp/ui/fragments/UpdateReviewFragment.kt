@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import fi.giao.finnishparliamentapp.R
@@ -13,12 +14,14 @@ import fi.giao.finnishparliamentapp.databinding.FragmentUpdateReviewBinding
 import fi.giao.finnishparliamentapp.databinding.ReviewBinding
 import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModel
 import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModelFactory
+import fi.giao.finnishparliamentapp.viewmodel.ReviewViewModel
+import fi.giao.finnishparliamentapp.viewmodel.ReviewViewModelFactory
 
 class UpdateReviewFragment : Fragment() {
     private lateinit var binding: FragmentUpdateReviewBinding
     private val safeArgs: UpdateReviewFragmentArgs by navArgs()
-    private val viewModel:MemberInfoViewModel by activityViewModels {
-        MemberInfoViewModelFactory(requireActivity().application)
+    private val viewModel: ReviewViewModel by viewModels {
+        ReviewViewModelFactory(requireActivity().application)
     }
     private lateinit var currentReview:MemberReview
 
