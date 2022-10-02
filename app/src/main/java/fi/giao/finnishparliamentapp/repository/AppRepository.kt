@@ -20,6 +20,12 @@ class AppRepository(private val database: AppDatabase) {
     }
 
     fun getMembersFromParty(party: String) = database.memberDao.getMembersFromParty(party)
+    suspend fun getFavoriteParliamentMember(listHeteka:List<Int>) =
+        withContext(Dispatchers.IO) {
+            database.memberDao
+                .getFavoriteParliamentMember(listHeteka)
+        }
+
 
     // These below functions are from MemberReview Entity
     fun getAllReviewsByHetekaId(hetekaId: Int) =
@@ -35,6 +41,5 @@ class AppRepository(private val database: AppDatabase) {
         .markFavorite(favoriteMember)
     suspend fun unMarkFavorite(hetekaId: Int) = database.favoriteDao
         .unMarkFavorite(hetekaId)
-
 
 }
