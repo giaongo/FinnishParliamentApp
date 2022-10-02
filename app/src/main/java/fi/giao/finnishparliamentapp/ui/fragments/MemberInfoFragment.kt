@@ -119,10 +119,14 @@ class MemberInfoFragment : Fragment() {
         inflater.inflate(R.menu.member_info_fragment_menu,menu)
     }
 
-    /**
-     * Source for changing icon color when menu item is clicked
-     * Source: https://stackoverflow.com/questions/56716093/setcolorfilter-is-deprecated-on-api29
-     */
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        viewModel.isMarkedFavorite.observe(viewLifecycleOwner) {
+            menu.findItem(R.id.unMark_favorite).isVisible = it
+            menu.findItem(R.id.mark_favorite).isVisible = !it
+        }
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val currentFavoriteMember = MemberFavorite(0,currentMember.hetekaId,true)
         return when (item.itemId) {
@@ -135,14 +139,6 @@ class MemberInfoFragment : Fragment() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
-        viewModel.isMarkedFavorite.observe(viewLifecycleOwner) {
-            menu.findItem(R.id.unMark_favorite).isVisible = it
-            menu.findItem(R.id.mark_favorite).isVisible = !it
         }
     }
 }
