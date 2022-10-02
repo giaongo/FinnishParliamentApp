@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_introAppFragment_to_partyListFragment"
             app:destination="@id/partyListFragment" />
+        <action
+            android:id="@+id/action_introAppFragment_to_favoriteListFragment"
+            app:destination="@id/favoriteListFragment" />
     </fragment>
     <fragment
         android:id="@+id/partyListFragment"
@@ -68,4 +71,9 @@
             android:name="requestedReview"
             app:argType="fi.giao.finnishparliamentapp.database.MemberReview" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteListFragment"
+        android:name="fi.giao.finnishparliamentapp.ui.fragments.FavoriteListFragment"
+        android:label="fragment_favorite_list"
+        tools:layout="@layout/fragment_favorite_list" />
 </navigation>
