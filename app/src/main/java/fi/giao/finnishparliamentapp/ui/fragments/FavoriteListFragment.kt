@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import fi.giao.finnishparliamentapp.adapter.FavoriteAdapter
 import fi.giao.finnishparliamentapp.databinding.FragmentFavoriteListBinding
 import fi.giao.finnishparliamentapp.viewmodel.FavoriteListViewModel
 import fi.giao.finnishparliamentapp.viewmodel.FavoriteListViewModelFactory
@@ -33,12 +36,18 @@ class FavoriteListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val favoriteAdapter = FavoriteAdapter(requireContext())
+        binding.favoriteListRecyclerView.apply {
+            adapter = favoriteAdapter
+            layoutManager = GridLayoutManager(requireContext(),2)
+        }
         viewModel.listHetekaId.observe(viewLifecycleOwner) {
             viewModel.getFavoriteMemberList(it)
         }
         viewModel.favoriteList.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(),"${it.size}",Toast.LENGTH_SHORT).show()
+            favoriteAdapter.submitList(it)
         }
+
 
     }
 }

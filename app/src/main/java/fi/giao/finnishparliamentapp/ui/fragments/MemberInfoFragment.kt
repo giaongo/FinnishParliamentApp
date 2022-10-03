@@ -25,7 +25,7 @@ import fi.giao.finnishparliamentapp.databinding.FragmentMemberInfoBinding
 import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModel
 import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModelFactory
 
-private const val IMG_BASE_URL = "https://avoindata.eduskunta.fi/"
+const val IMG_BASE_URL = "https://avoindata.eduskunta.fi/"
 
 /**
  * This fragment is in charge of showing information of current Parliament member, allows user

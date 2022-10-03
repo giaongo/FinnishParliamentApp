@@ -38,5 +38,8 @@
     <string name="favorite_bottom_menu">View Favorite</string>
     <string name="parties_bottom_menu">View Parties</string>
 
+    <!--FavoriteListFragment-->
+    <string name="favorite_name_text">%1s %s</string>
+    <string name="favorite_party_text">%s</string>
 
 </resources>
