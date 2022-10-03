@@ -7,34 +7,23 @@ import androidx.lifecycle.*
 import fi.giao.finnishparliamentapp.database.AppDatabase
 import fi.giao.finnishparliamentapp.database.ParliamentMember
 import fi.giao.finnishparliamentapp.repository.AppRepository
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 
 class FavoriteListViewModel(application: Application):AndroidViewModel(application) {
     private val appRepository = AppRepository(AppDatabase.getInstance(application))
-    private val _status = MutableLiveData<String>()
-    val status = _status
+    private val _favoriteList = MutableLiveData<List<ParliamentMember>>()
+    val favoriteList: LiveData<List<ParliamentMember>> = _favoriteList
 
     val listHetekaId: LiveData<List<Int>> = Transformations.map(appRepository.getAllFavorite()) {
         ParliamentFunctions.listHetekaId(it)
     }
 
-    fun getTestMember(list:List<Int>?):List<ParliamentMember>? {
-        if (list != null) {
-            val result = runBlocking {
-                 appRepository.getFavoriteParliamentMember(list)
-            }
-            return result
+    fun getFavoriteMemberList(list:List<Int>) {
+        viewModelScope.launch {
+            _favoriteList.value  = appRepository.getFavoriteParliamentMember(list)
         }
-        return null
     }
-
-    fun print() {
-        Log.d("TEST","Printing")
-    }
-
 }
 
 

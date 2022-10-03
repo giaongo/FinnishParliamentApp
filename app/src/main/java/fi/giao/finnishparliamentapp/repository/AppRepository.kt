@@ -1,8 +1,10 @@
 package fi.giao.finnishparliamentapp.repository
 
+import androidx.lifecycle.LiveData
 import fi.giao.finnishparliamentapp.database.AppDatabase
 import fi.giao.finnishparliamentapp.database.MemberFavorite
 import fi.giao.finnishparliamentapp.database.MemberReview
+import fi.giao.finnishparliamentapp.database.ParliamentMember
 import fi.giao.finnishparliamentapp.network.MemberApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -20,10 +22,11 @@ class AppRepository(private val database: AppDatabase) {
     }
 
     fun getMembersFromParty(party: String) = database.memberDao.getMembersFromParty(party)
-    suspend fun getFavoriteParliamentMember(listHeteka:List<Int>) =
+    suspend fun getFavoriteParliamentMember(listHeteka:List<Int>)  =
         withContext(Dispatchers.IO) {
-            database.memberDao
+            val result = database.memberDao
                 .getFavoriteParliamentMember(listHeteka)
+            return@withContext result
         }
 
 

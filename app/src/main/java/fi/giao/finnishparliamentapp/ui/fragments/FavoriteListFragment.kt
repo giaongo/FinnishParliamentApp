@@ -6,10 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import fi.giao.finnishparliamentapp.databinding.FragmentFavoriteListBinding
 import fi.giao.finnishparliamentapp.viewmodel.FavoriteListViewModel
 import fi.giao.finnishparliamentapp.viewmodel.FavoriteListViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FavoriteListFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteListBinding
@@ -27,14 +32,12 @@ class FavoriteListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.print()
 
         viewModel.listHetekaId.observe(viewLifecycleOwner) {
-            val result = viewModel.getTestMember(it)
-            result?.sortedBy { it.hetekaId }?.forEach {
-                Log.d("TEST", it.firstname)
-            }
-
+            viewModel.getFavoriteMemberList(it)
+        }
+        viewModel.favoriteList.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(),"${it.size}",Toast.LENGTH_SHORT).show()
         }
 
     }
