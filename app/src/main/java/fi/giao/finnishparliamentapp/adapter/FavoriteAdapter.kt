@@ -12,8 +12,22 @@ import fi.giao.finnishparliamentapp.database.ParliamentMember
 import fi.giao.finnishparliamentapp.databinding.ItemFavoriteBinding
 import fi.giao.finnishparliamentapp.ui.fragments.IMG_BASE_URL
 
-class FavoriteAdapter(val context: Context): ListAdapter<ParliamentMember, FavoriteAdapter.FavoriteViewHolder>(FavoriteDiffCallBack) {
+class FavoriteAdapter(val context: Context,
+                      val viewMoreListener:(ParliamentMember) -> Unit,
+                      val unMarkListener: (ParliamentMember) -> Unit)
+    : ListAdapter<ParliamentMember, FavoriteAdapter.FavoriteViewHolder>(FavoriteDiffCallBack) {
     inner class FavoriteViewHolder(private val binding: ItemFavoriteBinding): RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.apply {
+                viewMoreButton.setOnClickListener{
+                    viewMoreListener(getItem(adapterPosition))
+                }
+                unMarkButton.setOnClickListener {
+                    unMarkListener(getItem(adapterPosition))
+                }
+            }
+        }
         fun bindData(member: ParliamentMember) {
             binding.apply {
                 Glide.with(context).load(IMG_BASE_URL + member.pictureUrl)

@@ -138,6 +138,10 @@ class MemberInfoFragment : Fragment() {
                 viewModel.unMarkFavorite(currentMember.hetekaId)
                 true
             }
+            R.id.view_favorites_from_info_fragment -> {
+                findNavController().navigate(R.id.action_memberInfoFragment_to_favoriteListFragment)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

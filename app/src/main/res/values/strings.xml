@@ -18,6 +18,7 @@
     <string name="review_timestamp">Created at: %s</string>
     <string name="mark_favorite">Mark as favorite</string>
     <string name="unMark_favorite">Un-mark your favorite</string>
+    <string name="view_favorite_list">View favorites</string>
     <!-- AddReviewFragment   -->
     <string name="rating_label">Your Rating</string>
     <string name="comment_label">Your Comment</string>

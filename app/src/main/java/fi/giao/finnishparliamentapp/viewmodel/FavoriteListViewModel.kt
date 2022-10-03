@@ -24,6 +24,10 @@ class FavoriteListViewModel(application: Application):AndroidViewModel(applicati
             _favoriteList.value  = appRepository.getFavoriteParliamentMember(list)
         }
     }
+
+    fun unMarkFavorite(hetekaId:Int) = viewModelScope.launch {
+        appRepository.unMarkFavorite(hetekaId)
+    }
 }
 
 

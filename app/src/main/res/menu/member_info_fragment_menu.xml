@@ -10,4 +10,10 @@
         android:title="@string/unMark_favorite"
         app:iconTint="@color/white"
         app:showAsAction= "never" />
+
+    <item android:id="@+id/view_favorites_from_info_fragment"
+        android:title="@string/view_favorite_list"
+        app:iconTint="@color/white"
+        app:showAsAction= "never"
+        />
 </menu>
