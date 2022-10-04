@@ -15,6 +15,15 @@ class FavoriteListViewModel(application: Application):AndroidViewModel(applicati
     private val _favoriteList = MutableLiveData<List<ParliamentMember>>()
     val favoriteList: LiveData<List<ParliamentMember>> = _favoriteList
 
+    /**
+     * As the MemberFavorite entity does not contain the detail of individual member (like name, party)
+     * Line 27-35 : I get list of all data from MemberFavorite entity, and map
+     * to get list of only hetekaId as LiveData. After that, the listHetekaId is passed as
+     * argument for function getFavoriteMemberList. The result is a list of member from
+     * ParliamentMember entity that is marked as favorites.
+     *
+     * Note: This is somewhat a replacement for joining 2 separate tables.
+     */
     val listHetekaId: LiveData<List<Int>> = Transformations.map(appRepository.getAllFavorite()) {
         ParliamentFunctions.listHetekaId(it)
     }
