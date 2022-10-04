@@ -27,9 +27,9 @@ class PartyListViewModel(application: Application): AndroidViewModel(application
         ParliamentFunctions.listParty(list)
     }
 
-    init {
-        getDataFromNetworkAndSave()
-    }
+//    init {
+//        getDataFromNetworkAndSave()
+//    }
 
     private fun getDataFromNetworkAndSave() {
         viewModelScope.launch {

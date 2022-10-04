@@ -4,6 +4,7 @@
     package="fi.giao.finnishparliamentapp">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:name=".FinnishParliamentApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
