@@ -13,6 +13,12 @@ import fi.giao.finnishparliamentapp.databinding.FragmentPartyListBinding
 import fi.giao.finnishparliamentapp.viewmodel.PartyListViewModel
 import fi.giao.finnishparliamentapp.viewmodel.PartyListViewModelFactory
 
+/**
+ * Date: 5/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This fragment connects to PartyListViewModel object and displays list of Parties to the UI
+ */
 class PartyListFragment : Fragment() {
     private lateinit var binding: FragmentPartyListBinding
     private val viewModel: PartyListViewModel by viewModels {
