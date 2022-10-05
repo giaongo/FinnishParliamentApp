@@ -22,12 +22,9 @@ class AppRepository(private val database: AppDatabase) {
     }
 
     fun getMembersFromParty(party: String) = database.memberDao.getMembersFromParty(party)
-    suspend fun getFavoriteParliamentMember(listHeteka:List<Int>)  =
-        withContext(Dispatchers.IO) {
-            val result = database.memberDao
+    fun getFavoriteParliamentMember(listHeteka:List<Int>)  = database.memberDao
                 .getFavoriteParliamentMember(listHeteka)
-            return@withContext result
-        }
+
 
 
     // These below functions are from MemberReview Entity

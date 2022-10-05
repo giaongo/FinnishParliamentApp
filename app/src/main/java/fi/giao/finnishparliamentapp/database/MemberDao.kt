@@ -19,5 +19,5 @@ interface MemberDao {
     fun getMembersFromParty(requestedParty:String): LiveData<List<ParliamentMember>>
 
     @Query("SELECT * FROM ParliamentMember WHERE hetekaId IN(:listHetekaId)")
-    suspend fun getFavoriteParliamentMember(listHetekaId:List<Int>):List<ParliamentMember>
+    fun getFavoriteParliamentMember(listHetekaId:List<Int>):LiveData<List<ParliamentMember>>
 }
