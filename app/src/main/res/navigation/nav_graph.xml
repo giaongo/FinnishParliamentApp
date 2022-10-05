@@ -77,8 +77,8 @@
     <fragment
         android:id="@+id/favoriteListFragment"
         android:name="fi.giao.finnishparliamentapp.ui.fragments.FavoriteListFragment"
-        android:label="fragment_favorite_list"
-        tools:layout="@layout/fragment_favorite_list" >
+        android:label="@string/favorite_list_fragment_label"
+        tools:layout="@layout/fragment_favorite_list">
         <action
             android:id="@+id/action_favoriteListFragment_to_memberInfoFragment"
             app:destination="@id/memberInfoFragment" />

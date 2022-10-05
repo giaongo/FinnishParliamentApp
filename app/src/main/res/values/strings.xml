@@ -5,8 +5,7 @@
     <string name="member_info_fragment_label">View member</string>
     <string name="add_review_fragment_label">Add review</string>
     <string name="update_review_fragment_label">Update review</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="favorite_list_fragment_label">View favorite members</string>
 
 
     <!--MemberInfoFragment-->
