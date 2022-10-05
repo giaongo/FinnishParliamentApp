@@ -16,4 +16,10 @@
         app:iconTint="@color/white"
         app:showAsAction= "never"
         />
+    <item android:id="@+id/back_to_home"
+        android:icon="@drawable/home_icon"
+        android:title="@string/back_to_home"
+        app:iconTint="@color/white"
+        app:showAsAction="always"
+        />
 </menu>

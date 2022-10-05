@@ -136,6 +136,10 @@ class MemberInfoFragment : Fragment() {
                 findNavController().navigate(R.id.action_memberInfoFragment_to_favoriteListFragment)
                 true
             }
+            R.id.back_to_home -> {
+                findNavController().navigate(R.id.action_memberInfoFragment_to_introAppFragment)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

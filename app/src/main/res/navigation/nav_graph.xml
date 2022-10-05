@@ -55,6 +55,11 @@
         <action
             android:id="@+id/action_memberInfoFragment_to_favoriteListFragment"
             app:destination="@id/favoriteListFragment" />
+        <action
+            android:id="@+id/action_memberInfoFragment_to_introAppFragment"
+            app:destination="@id/introAppFragment"
+            app:popUpTo="@id/introAppFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/addReviewFragment"
