@@ -10,6 +10,12 @@ import fi.giao.finnishparliamentapp.database.MemberReview
 import fi.giao.finnishparliamentapp.repository.AppRepository
 import kotlinx.coroutines.launch
 
+/**
+ * Date: 5/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This view model queries the insert, update and delete review
+ */
 class ReviewViewModel(application: Application): AndroidViewModel(application) {
     private val appRepository = AppRepository(AppDatabase.getInstance(application))
     fun insertReview(review: MemberReview) = viewModelScope.launch {

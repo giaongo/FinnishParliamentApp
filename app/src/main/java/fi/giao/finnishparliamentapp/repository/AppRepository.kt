@@ -21,7 +21,7 @@ class AppRepository(private val database: AppDatabase) {
         }
     }
 
-    suspend fun getMembersFromParty(party: String) = database.memberDao.getMembersFromParty(party)
+    fun getMembersFromParty(party: String) = database.memberDao.getMembersFromParty(party)
     suspend fun getFavoriteParliamentMember(listHeteka:List<Int>)  =
         withContext(Dispatchers.IO) {
             val result = database.memberDao

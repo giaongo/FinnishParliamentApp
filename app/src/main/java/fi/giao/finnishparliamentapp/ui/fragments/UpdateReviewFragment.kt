@@ -4,19 +4,23 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import fi.giao.finnishparliamentapp.R
 import fi.giao.finnishparliamentapp.database.MemberReview
 import fi.giao.finnishparliamentapp.databinding.FragmentUpdateReviewBinding
-import fi.giao.finnishparliamentapp.databinding.ReviewBinding
-import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModel
-import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModelFactory
 import fi.giao.finnishparliamentapp.viewmodel.ReviewViewModel
 import fi.giao.finnishparliamentapp.viewmodel.ReviewViewModelFactory
 
+/**
+ * Date: 5/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This fragment uses the ReviewViewModel and activates the update and delete reviews based on user
+ * input. The delete function is called once user clicks the trash bin icon on app bar associated
+ * with this view. When either update or delete is completed, the fragment is popped out of backstack.
+ */
 class UpdateReviewFragment : Fragment() {
     private lateinit var binding: FragmentUpdateReviewBinding
     private val safeArgs: UpdateReviewFragmentArgs by navArgs()

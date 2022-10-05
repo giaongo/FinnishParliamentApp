@@ -18,19 +18,16 @@ class MemberListViewModel(application: Application): AndroidViewModel(applicatio
     private val appRepository = AppRepository(AppDatabase.getInstance(application))
     private val requestedParty = MutableLiveData<String>()
 
-    /**
-     * Use liveData coroutine builder to fetch list of members belonging to party asynchronously.
-     * emit() is to emit the result
-     * The memberListFromParty is an immutable LiveData that will be updated with the result from
-     * calling the suspend function whenever requestedParty value changes
-     * Learning source:
-     *      https://developer.android.com/topic/libraries/architecture/coroutines#livedata
-     *      https://stackoverflow.com/questions/47610676/how-and-where-to-use-transformations-switchmap
+    /*
+     The memberListFromParty is an immutable LiveData that will be updated with the result from
+     calling the scoped function whenever requestedParty value changes. As the returned from map
+     is LiveData the value of memberListFromParty is observed accordingly
+     - Learning source:
+        https://developer.android.com/topic/libraries/architecture/livedata#transform_livedata
+        https://stackoverflow.com/questions/47610676/how-and-where-to-use-transformations-switchmap
      */
     val memberListFromParty: LiveData<List<ParliamentMember>> = Transformations.switchMap(requestedParty) {
-        liveData {
-            emit(appRepository.getMembersFromParty(it))
-        }
+        appRepository.getMembersFromParty(it)
     }
 
     fun setParty(party:String) {

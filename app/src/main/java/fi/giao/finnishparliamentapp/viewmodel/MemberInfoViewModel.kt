@@ -9,6 +9,9 @@ import fi.giao.finnishparliamentapp.repository.AppRepository
 import kotlinx.coroutines.launch
 
 /**
+ * Date: 5/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
  * This view model will be referenced by MemberInfoFragment. It shows member info,
  * calculates average rating and shows user reviews. It also allows user to mark or un-mark
  * member as favorite.
@@ -17,14 +20,19 @@ class MemberInfoViewModel(application: Application): AndroidViewModel(applicatio
     private val appRepository = AppRepository(AppDatabase.getInstance(application))
     private val hetekaId = MutableLiveData<Int>()
 
-    /* get list of MemberReview as a LiveData based on the change of hetekaId and changing in value
-     of appRepository.getAllReviewsByHetekaId(id) */
+    /*
+    list of MemberReview as a LiveData will be updated from appRepository.getAllReviewsByHetekaId(id)
+        whenever the value of hetekaId changes. As the return from function in the scope is LiveData,
+        the value of its is observed accordingly
+    */
     val allReviewsByHetekaId: LiveData<List<MemberReview>> = Transformations.switchMap(hetekaId) {
         id -> appRepository.getAllReviewsByHetekaId(id)
     }
 
     /*
      Get averageRating as a LiveData depending on the change of allReviewsByHetekaId LiveData
+     The list of only rating is mapped from allReviewsByHetekaId and the average number is
+     calculated by using list.average()
      */
     val averageRating: LiveData<Float> = Transformations.map(allReviewsByHetekaId) {
                 val listRating = ParliamentFunctions.listRating(it)
@@ -51,7 +59,6 @@ class MemberInfoViewModel(application: Application): AndroidViewModel(applicatio
     fun unMarkFavorite(hetekaId:Int) = viewModelScope.launch {
         appRepository.unMarkFavorite(hetekaId)
     }
-
 }
 
 class MemberInfoViewModelFactory(val app:Application): ViewModelProvider.Factory {
