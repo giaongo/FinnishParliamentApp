@@ -1,8 +1,8 @@
 package fi.giao.finnishparliamentapp.database
 
 import android.os.Parcelable
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import kotlinx.parcelize.Parcelize
 
 
@@ -18,3 +18,18 @@ data class ParliamentMember (
     val minister: Boolean,
     val pictureUrl: String
 ): Parcelable
+
+@Dao
+interface MemberDao {
+    @Query("SELECT * FROM ParliamentMember")
+    fun getAllMembers(): LiveData<List<ParliamentMember>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllMembers(memberList: List<ParliamentMember>)
+
+    @Query("SELECT * FROM ParliamentMember WHERE party = :requestedParty ORDER BY lastname ASC")
+    fun getMembersFromParty(requestedParty:String): LiveData<List<ParliamentMember>>
+
+    @Query("SELECT * FROM ParliamentMember WHERE hetekaId IN(:listHetekaId)")
+    fun getFavoriteParliamentMember(listHetekaId:List<Int>): LiveData<List<ParliamentMember>>
+}
