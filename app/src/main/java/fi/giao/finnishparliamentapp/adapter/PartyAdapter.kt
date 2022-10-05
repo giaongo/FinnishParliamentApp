@@ -8,7 +8,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fi.giao.finnishparliamentapp.R
-
+/**
+ * Date: 5/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This recycler view adapter is for recycler view in PartyListFragment
+ */
 class PartyAdapter(val onItemClick : (String) -> Unit) : ListAdapter<String, PartyAdapter.PartyViewHolder>(DiffCallBack){
     inner class PartyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemText:TextView = itemView.findViewById(R.id.item_text_view)

@@ -3,7 +3,13 @@ package fi.giao.finnishparliamentapp.viewmodel
 import fi.giao.finnishparliamentapp.database.MemberFavorite
 import fi.giao.finnishparliamentapp.database.MemberReview
 import fi.giao.finnishparliamentapp.database.ParliamentMember
-
+/**
+ * Date: 5/10/2022
+ * Name:Giao Ngo
+ * Student id: 2112622
+ * This singleton object defines basic functions that are called within the app, mostly in view
+ * models
+ */
 object ParliamentFunctions {
 
     fun listParty(memberList: List<ParliamentMember>): List<String> {

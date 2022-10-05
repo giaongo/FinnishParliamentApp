@@ -4,7 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-
+/**
+ * Date: 5/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This is abstract class AppDatabase for the whole app project
+ */
 @Database(entities = [ParliamentMember::class, MemberReview::class, MemberFavorite::class], version = 1, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     abstract val memberDao: MemberDao

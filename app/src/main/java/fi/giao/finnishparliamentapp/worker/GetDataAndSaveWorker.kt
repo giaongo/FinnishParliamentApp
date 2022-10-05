@@ -8,7 +8,12 @@ import androidx.work.WorkerParameters
 import fi.giao.finnishparliamentapp.database.AppDatabase
 import fi.giao.finnishparliamentapp.repository.AppRepository
 import timber.log.Timber
-
+/**
+ * Date: 5/10/2022
+ * Name:Giao Ngo
+ * Student id: 2112622
+ * This worker class gets data from network and saves to database
+ */
 class GetDataAndSaveWorker(context: Context, params: WorkerParameters) : CoroutineWorker(context, params){
     companion object {
         const val WORK_NAME = "fetch_network_and_save_to_database_work"

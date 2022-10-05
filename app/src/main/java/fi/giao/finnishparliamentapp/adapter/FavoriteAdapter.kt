@@ -12,6 +12,12 @@ import fi.giao.finnishparliamentapp.database.ParliamentMember
 import fi.giao.finnishparliamentapp.databinding.ItemFavoriteBinding
 import fi.giao.finnishparliamentapp.ui.fragments.IMG_BASE_URL
 
+/**
+ * Date: 5/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This recycler view adapter is for recycler view in FavoriteListFragment
+ */
 class FavoriteAdapter(val context: Context,
                       val viewMoreListener:(ParliamentMember) -> Unit,
                       val unMarkListener: (ParliamentMember) -> Unit)

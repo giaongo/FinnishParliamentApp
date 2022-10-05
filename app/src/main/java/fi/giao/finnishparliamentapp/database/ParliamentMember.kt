@@ -5,7 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import kotlinx.parcelize.Parcelize
 
-
+/**
+ * Date: 5/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This contains ParliamentMember entity and its queries in MemberDao
+ */
 @Parcelize
 @Entity
 data class ParliamentMember (

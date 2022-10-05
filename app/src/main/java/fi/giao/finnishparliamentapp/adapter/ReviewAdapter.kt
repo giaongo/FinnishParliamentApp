@@ -11,7 +11,12 @@ import fi.giao.finnishparliamentapp.database.MemberReview
 import fi.giao.finnishparliamentapp.databinding.ReviewBinding
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
-
+/**
+ * Date: 5/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This recycler view adapter is for recycler view in MemberInfoFragment
+ */
 class ReviewAdapter(val context: Context, private val listener: (MemberReview) -> Unit): ListAdapter<MemberReview, ReviewAdapter.ReviewViewHolder>(ReviewDiffCallBack) {
     inner class ReviewViewHolder(private val binding: ReviewBinding):RecyclerView.ViewHolder(binding.root) {
         private val simpleDateFormat = SimpleDateFormat("HH:mm" + "-dd.MM.yyyy")

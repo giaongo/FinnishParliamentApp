@@ -7,7 +7,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-
+/**
+ * Date: 5/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This contains network fetch configuration for the app
+ */
 private const val BASE_URL = "https://users.metropolia.fi/~peterh/"
 
 // Build  Moshi object

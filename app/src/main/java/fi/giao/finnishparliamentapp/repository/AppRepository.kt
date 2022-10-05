@@ -1,16 +1,19 @@
 package fi.giao.finnishparliamentapp.repository
 
-import androidx.lifecycle.LiveData
 import fi.giao.finnishparliamentapp.database.AppDatabase
 import fi.giao.finnishparliamentapp.database.MemberFavorite
 import fi.giao.finnishparliamentapp.database.MemberReview
-import fi.giao.finnishparliamentapp.database.ParliamentMember
 import fi.giao.finnishparliamentapp.network.MemberApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+/**
+ * Date: 5/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This repository contains methods to fetch data from Remote Data Source and from Room database 
+ */
 class AppRepository(private val database: AppDatabase) {
-    fun getAllMembers() = database.memberDao.getAllMembers()
 
     /* Function that retrieves data from network and save to local database.
     * This function uses IO dispatcher to make sure it is safe to call from main thread*/
@@ -21,13 +24,13 @@ class AppRepository(private val database: AppDatabase) {
         }
     }
 
+    // These below functions are from memberDao
+    fun getAllMembers() = database.memberDao.getAllMembers()
     fun getMembersFromParty(party: String) = database.memberDao.getMembersFromParty(party)
-    fun getFavoriteParliamentMember(listHeteka:List<Int>)  = database.memberDao
-                .getFavoriteParliamentMember(listHeteka)
+    fun getFavoriteParliamentMember(listHeteka: List<Int>) = database.memberDao
+        .getFavoriteParliamentMember(listHeteka)
 
-
-
-    // These below functions are from MemberReview Entity
+    // These below functions are from reviewDao
     fun getAllReviewsByHetekaId(hetekaId: Int) =
         database.reviewDao.getAllReviewsByHetekaId(hetekaId)
 
@@ -35,10 +38,11 @@ class AppRepository(private val database: AppDatabase) {
     suspend fun updateReview(review: MemberReview) = database.reviewDao.updateReview(review)
     suspend fun deleteReview(review: MemberReview) = database.reviewDao.deleteReview(review)
 
-    // These below functions are from MemberFavorite Entity
+    // These below functions are from favoriteDao
     fun getAllFavorite() = database.favoriteDao.getAllFavorite()
     suspend fun markFavorite(favoriteMember: MemberFavorite) = database.favoriteDao
         .markFavorite(favoriteMember)
+
     suspend fun unMarkFavorite(hetekaId: Int) = database.favoriteDao
         .unMarkFavorite(hetekaId)
 

@@ -3,6 +3,12 @@ package fi.giao.finnishparliamentapp.database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
+/**
+ * Date: 5/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This contains MemberFavorite entity and queries that applied for this entity in FavoriteDao
+ */
 @Entity
 data class MemberFavorite (
         @PrimaryKey(autoGenerate = true)

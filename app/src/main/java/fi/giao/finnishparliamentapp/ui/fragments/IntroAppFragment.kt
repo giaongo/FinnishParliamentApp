@@ -9,6 +9,13 @@ import androidx.navigation.fragment.findNavController
 import fi.giao.finnishparliamentapp.R
 import fi.giao.finnishparliamentapp.databinding.FragmentIntroAppBinding
 
+/**
+ * Date: 5/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This fragment is welcoming intro part that contains bottom navigation bar where user can chooses
+ * to view either favorite list or party list
+ */
 class IntroAppFragment : Fragment() {
     private lateinit var binding:FragmentIntroAppBinding
 

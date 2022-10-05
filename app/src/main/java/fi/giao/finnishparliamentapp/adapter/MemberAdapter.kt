@@ -12,6 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import fi.giao.finnishparliamentapp.R
 import fi.giao.finnishparliamentapp.database.ParliamentMember
 
+/**
+ * Date: 5/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This recycler view adapter is for recycler view in MemberListFragment
+ */
 class MemberAdapter(val onItemClick: (ParliamentMember) -> Unit, val context: Context):
     ListAdapter<ParliamentMember,MemberAdapter.MemberViewHolder>(DiffCallBack) {
 
