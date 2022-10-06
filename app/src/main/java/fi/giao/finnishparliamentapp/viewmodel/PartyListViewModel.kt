@@ -2,6 +2,7 @@ package fi.giao.finnishparliamentapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.*
+import fi.giao.finnishparliamentapp.ParliamentFunctions
 import fi.giao.finnishparliamentapp.database.AppDatabase
 import fi.giao.finnishparliamentapp.database.ParliamentMember
 import fi.giao.finnishparliamentapp.repository.AppRepository

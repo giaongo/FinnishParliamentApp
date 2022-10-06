@@ -1,4 +1,4 @@
-package fi.giao.finnishparliamentapp.viewmodel
+package fi.giao.finnishparliamentapp
 
 import fi.giao.finnishparliamentapp.database.MemberFavorite
 import fi.giao.finnishparliamentapp.database.MemberReview
