@@ -30,7 +30,7 @@ class ReviewAdapter(val context: Context, private val listener: (MemberReview) -
             val timestamp = simpleDateFormat.format(Timestamp(review.timeStamp))
             binding.apply {
                 reviewRatingBar.rating = review.rating
-                reviewTextView.text = context.getString(R.string.review_text,review.comment)
+                reviewTextView.text = context.getString(R.string.review_text,review.comment.trim())
                 reviewTimestamp.text = context.getString(R.string.review_timestamp,timestamp)
             }
 
