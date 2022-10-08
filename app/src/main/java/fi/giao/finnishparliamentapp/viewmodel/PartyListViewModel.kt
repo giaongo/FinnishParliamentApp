@@ -19,10 +19,29 @@ class PartyListViewModel(application: Application): AndroidViewModel(application
 
     private val appRepository = AppRepository(AppDatabase.getInstance(application))
     private val memberList: LiveData<List<ParliamentMember>> = appRepository.getAllMembers()
-
      // Use Transformations.map to get list of party from list of members as LiveData
     val partyList: LiveData<List<String>> = Transformations.map(memberList) { list ->
         ParliamentFunctions.listParty(list)
+    }
+
+    val duplicatedParty:LiveData<List<String>> = Transformations.map(memberList) { list ->
+        list.map { it.party }
+    }
+
+    val partyPercentage:LiveData<List<Pair<String,Double>>> = Transformations.map(duplicatedParty) {
+        calculatePartyPercentage(it)
+    }
+
+    fun calculatePartyPercentage(duplicatedListParty:List<String>): List<Pair<String,Double>> {
+        val percentageList = mutableListOf<Pair<String,Double>>()
+        val uniquePartyList = duplicatedListParty.toSet().toList()
+        if (uniquePartyList.isNotEmpty()) {
+            uniquePartyList.forEach { party ->
+                val percentage = ParliamentFunctions.calculatePercentage(party,duplicatedListParty)
+                percentageList.add(Pair(party,percentage))
+            }
+        }
+        return percentageList.toList()
     }
 }
 

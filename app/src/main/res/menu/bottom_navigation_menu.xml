@@ -9,4 +9,9 @@
         android:icon="@drawable/view_party_icon"
         android:title="@string/parties_bottom_menu"
         />
+    <item
+        android:id="@+id/view_statistic"
+        android:icon="@drawable/ic_statistic"
+        android:title="@string/statistic_bottom_menu"
+        />
 </menu>

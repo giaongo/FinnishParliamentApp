@@ -3,6 +3,8 @@ package fi.giao.finnishparliamentapp
 import fi.giao.finnishparliamentapp.database.MemberFavorite
 import fi.giao.finnishparliamentapp.database.MemberReview
 import fi.giao.finnishparliamentapp.database.ParliamentMember
+import kotlin.math.roundToInt
+
 /**
  * Date: 5/10/2022
  * Name:Giao Ngo
@@ -28,5 +30,15 @@ object ParliamentFunctions {
             return list.contains(input)
         }
         return false
+    }
+    fun calculatePercentage(party: String, listParty:List<String>): Double {
+        if (party.isNotEmpty() && listParty.isNotEmpty()) {
+            if (listParty.contains(party)){
+                val partyCount  = listParty.count { it == party }
+                val result = partyCount.toDouble().div(listParty.size).times(100)
+                return String.format("%.1f",result).toDouble()
+            }
+        }
+        return 0.0
     }
 }

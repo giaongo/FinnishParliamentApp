@@ -39,6 +39,10 @@ class IntroAppFragment : Fragment() {
                     findNavController().navigate(R.id.action_introAppFragment_to_favoriteListFragment)
                     true
                 }
+                R.id.view_statistic -> {
+                    findNavController().navigate(R.id.action_introAppFragment_to_statisticFragment)
+                    true
+                }
                 else -> false
             }
         }
