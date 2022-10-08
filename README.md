@@ -14,7 +14,7 @@ This app is created for user to browse Finnish Parliament parties, member info a
 1. Add members to favorite list and view favorite list
 
 ## In-app technology
-This Android app is built by Kotlin, targetting min SDK 24 and following MVVM software architectural pattern .
+This Android app is built by Kotlin, targetting min SDK 24 and following MVVM software architectural pattern. 
 
 Components used in App: 
 * FrontEnd: Acitivity, Fragments, Bottom navigation, RecyclerView, CardView and Glibe library. 
@@ -22,6 +22,7 @@ Components used in App:
 1. Database: ROOM database with Coroutine
 1. Network: Retrofit, Moshi to fetch JSON data from network and convert to object.
 1. WorkManager: Update data from network periodically once a day in background through PeriodicWorkRequest
+1. UnitTesting: JUnit 
 
 ## App Demo: 
 <div align="center">
