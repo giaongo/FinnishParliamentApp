@@ -134,7 +134,7 @@ class MemberInfoFragment : Fragment() {
             R.id.unMark_favorite -> {
                 viewModel.unMarkFavorite(currentMember.hetekaId)
                 Toast.makeText(requireContext(),getString(R.string.unMark_favorite_member_name,
-                    currentMember.lastname),Toast.LENGTH_SHORT).show()
+                    currentMember.firstname),Toast.LENGTH_SHORT).show()
                 true
             }
             R.id.view_favorites_from_info_fragment -> {
