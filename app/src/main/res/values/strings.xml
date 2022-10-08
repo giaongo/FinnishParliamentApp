@@ -17,19 +17,16 @@
     <string name="review_timestamp">Created at: %s</string>
     <string name="mark_favorite">Mark as favorite</string>
     <string name="unMark_favorite">Un-mark your favorite</string>
+    <string name="mark_favorite_member_name">Mark \'%s\' as favorite</string>
+    <string name="unMark_favorite_member_name">Un-mark \'%s\' from favorite list</string>
     <string name="view_favorite_list">View favorites</string>
     <string name="back_to_home">Back to home</string>
+
     <!-- AddReviewFragment   -->
     <string name="rating_label">Your Rating</string>
     <string name="comment_label">Your Comment</string>
     <string name="comment_edt">Write your comments</string>
     <string name="add_button">Add Review</string>
-    <!-- ExtraMemberInfoFragment -->
-    <string name="name_text">Name: %1s %2s</string>
-    <string name="party_text">Party: %s</string>
-    <string name="born_year_text">Born Year: %d</string>
-    <string name="constituency_text">Constituency: %s</string>
-    <string name="twitter_text"><a>Twitter:</a> %s</string>
 
     <!-- UpdateReviewFragment-->
     <string name="update_button">Update Review</string>

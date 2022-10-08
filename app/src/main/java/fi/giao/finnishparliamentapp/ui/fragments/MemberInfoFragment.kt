@@ -2,6 +2,7 @@ package fi.giao.finnishparliamentapp.ui.fragments
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -126,10 +127,14 @@ class MemberInfoFragment : Fragment() {
         return when (item.itemId) {
             R.id.mark_favorite -> {
                 viewModel.markFavorite(currentFavoriteMember)
+                Toast.makeText(requireContext(),getString(R.string.mark_favorite_member_name,
+                    currentMember.firstname),Toast.LENGTH_SHORT).show()
                 true
             }
             R.id.unMark_favorite -> {
                 viewModel.unMarkFavorite(currentMember.hetekaId)
+                Toast.makeText(requireContext(),getString(R.string.unMark_favorite_member_name,
+                    currentMember.lastname),Toast.LENGTH_SHORT).show()
                 true
             }
             R.id.view_favorites_from_info_fragment -> {
