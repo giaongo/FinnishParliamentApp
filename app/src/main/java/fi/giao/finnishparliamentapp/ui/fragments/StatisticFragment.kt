@@ -53,6 +53,7 @@ class StatisticFragment : Fragment() {
     }
 
     /**
+     * Follow MPAndroidChart library
      * Source reference:
      * https://www.geeksforgeeks.org/android-create-a-pie-chart-with-kotlin/
      * https://stackoverflow.com/questions/50907258/pie-chart-alignment-issue-using-mpandroidchart

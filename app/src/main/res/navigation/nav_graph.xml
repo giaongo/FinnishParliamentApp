@@ -94,6 +94,6 @@
     <fragment
         android:id="@+id/statisticFragment"
         android:name="fi.giao.finnishparliamentapp.ui.fragments.StatisticFragment"
-        android:label="fragment_statistic"
+        android:label="@string/statistic_fragment_label"
         tools:layout="@layout/fragment_statistic" />
 </navigation>

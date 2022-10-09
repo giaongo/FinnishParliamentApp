@@ -6,7 +6,7 @@
     <string name="add_review_fragment_label">Add review</string>
     <string name="update_review_fragment_label">Update review</string>
     <string name="favorite_list_fragment_label">View favorite members</string>
-
+    <string name="statistic_fragment_label">View statistic</string>
 
     <!--MemberInfoFragment-->
     <string name="party_name_text">%s</string>
