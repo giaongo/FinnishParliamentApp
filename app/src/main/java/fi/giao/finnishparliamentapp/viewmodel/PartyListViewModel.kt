@@ -2,6 +2,7 @@ package fi.giao.finnishparliamentapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.github.mikephil.charting.data.PieEntry
 import fi.giao.finnishparliamentapp.ParliamentFunctions
 import fi.giao.finnishparliamentapp.database.AppDatabase
 import fi.giao.finnishparliamentapp.database.ParliamentMember
@@ -23,8 +24,9 @@ class PartyListViewModel(application: Application): AndroidViewModel(application
     val partyList: LiveData<List<String>> = Transformations.map(memberList) { list ->
         ParliamentFunctions.listParty(list)
     }
-
-    val duplicatedParty:LiveData<List<String>> = Transformations.map(memberList) { list ->
+    private val _entries: MutableList<PieEntry> = mutableListOf()
+    val entries: List<PieEntry> = _entries
+    private val duplicatedParty:LiveData<List<String>> = Transformations.map(memberList) { list ->
         list.map { it.party }
     }
 
@@ -32,13 +34,14 @@ class PartyListViewModel(application: Application): AndroidViewModel(application
         calculatePartyPercentage(it)
     }
 
-    fun calculatePartyPercentage(duplicatedListParty:List<String>): List<Pair<String,Double>> {
+    private fun calculatePartyPercentage(duplicatedListParty:List<String>): List<Pair<String,Double>> {
         val percentageList = mutableListOf<Pair<String,Double>>()
         val uniquePartyList = duplicatedListParty.toSet().toList()
         if (uniquePartyList.isNotEmpty()) {
             uniquePartyList.forEach { party ->
                 val percentage = ParliamentFunctions.calculatePercentage(party,duplicatedListParty)
                 percentageList.add(Pair(party,percentage))
+                _entries.add(PieEntry(percentage.toFloat(),party))
             }
         }
         return percentageList.toList()

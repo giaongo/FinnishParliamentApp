@@ -44,5 +44,18 @@
     <!--StatisticFragment-->
     <string name="statistic_heading">Data Statistic</string>
     <string name="statistic_party_item">Party %1s : %2s %%</string>
+    <string name="pie_chart_heading">Party Pie Chart</string>
+    <string name="sd_label">sd</string>
+    <string name="vihr_label">vihr</string>
+    <string name="ps_label">ps</string>
+    <string name="kok_label">kok</string>
+    <string name="r_label">r</string>
+    <string name="kesk_label">kesk</string>
+    <string name="kd_label">kd</string>
+    <string name="vas_label">vas</string>
+    <string name="wr_label">wr</string>
+    <string name="liik_label">liik</string>
+    <string name="vkk_label">vkk</string>
+
 
 </resources>
