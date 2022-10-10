@@ -40,6 +40,8 @@
     <!--FavoriteListFragment-->
     <string name="favorite_name_text">%1s %s</string>
     <string name="favorite_party_text">%s</string>
+    <string name="view_more_favorite">View more</string>
+    <string name="un_mark_favorite">Unmark</string>
 
     <!--StatisticFragment-->
     <string name="statistic_heading">Data Statistic</string>
@@ -56,6 +58,7 @@
     <string name="wr_label">wr</string>
     <string name="liik_label">liik</string>
     <string name="vkk_label">vkk</string>
+
 
 
 </resources>

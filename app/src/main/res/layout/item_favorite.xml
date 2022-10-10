@@ -58,14 +58,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:textSize="11sp"
-                android:text="View more"
+                android:text="@string/view_more_favorite"
                 style="?attr/borderlessButtonStyle" />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/unMark_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:text="Unmark"
+                android:text="@string/un_mark_favorite"
                 style="?attr/borderlessButtonStyle" />
         </LinearLayout>
     </LinearLayout>
