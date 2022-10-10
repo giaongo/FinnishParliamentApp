@@ -3,7 +3,6 @@ package fi.giao.finnishparliamentapp
 import fi.giao.finnishparliamentapp.database.MemberFavorite
 import fi.giao.finnishparliamentapp.database.MemberReview
 import fi.giao.finnishparliamentapp.database.ParliamentMember
-import kotlin.math.roundToInt
 
 /**
  * Date: 5/10/2022
