@@ -5,7 +5,8 @@ This app is for users to browse Finnish Parliament parties, view member info, an
 ## Tables of contents
 * [App Features](#app-features)
 * [In-app technology](#in-app-technology)
-* [App Demo](#app-demo)
+* [App Demo Video](#app-demo-video)
+* [App UI](#app-ui)
 
 ## App Features
 1. Browse parties and members information. 
@@ -28,12 +29,15 @@ Components used in App:
 1. Implicit intent to send email
 1. MPAndroidChart library to draw pie chart
 
-## App Demo: 
+## App Demo Video: 
 <div align="center">
 
 [![Finnish Parliament App Demo](http://img.youtube.com/vi/jhamcarcMUk/0.jpg)](http://www.youtube.com/watch?v=jhamcarcMUk "[Finnish Parliament App Demo")
 
 </div>
+
+## App UI:
+![app_ui](https://user-images.githubusercontent.com/83873333/194910267-e419d01c-1e1c-4990-b325-776b986c5b64.jpg)
  
 
  
