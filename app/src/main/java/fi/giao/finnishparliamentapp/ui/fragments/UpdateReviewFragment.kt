@@ -18,8 +18,7 @@ import fi.giao.finnishparliamentapp.viewmodel.ReviewViewModelFactory
  * Name: Giao Ngo
  * Student id: 2112622
  * This fragment uses the ReviewViewModel and activates the update and delete reviews based on user
- * input. The delete function is called once user clicks the trash bin icon on app bar associated
- * with this view. When either update or delete is completed, the fragment is popped out of backstack.
+ * input.
  */
 class UpdateReviewFragment : Fragment() {
     private lateinit var binding: FragmentUpdateReviewBinding

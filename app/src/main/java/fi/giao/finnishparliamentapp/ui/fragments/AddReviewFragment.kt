@@ -20,8 +20,7 @@ import fi.giao.finnishparliamentapp.viewmodel.ReviewViewModelFactory
  * Name: Giao Ngo
  * Student id: 2112622
  * This fragment uses ReviewViewModel that allows users to add their reviews (rating and comment)
- * to selected parliament member. After the add button is clicked, the review is saved to database
- * and this fragment is popped out of backstack.
+ * to selected parliament member.
  */
 class AddReviewFragment : Fragment() {
     private lateinit var binding: FragmentAddReviewBinding

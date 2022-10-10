@@ -14,7 +14,7 @@ import fi.giao.finnishparliamentapp.databinding.FragmentIntroAppBinding
  * Name: Giao Ngo
  * Student id: 2112622
  * This fragment is welcoming intro part that contains bottom navigation bar where user can chooses
- * to view either favorite list or party list
+ * to view either favorite list, party list and statistic
  */
 class IntroAppFragment : Fragment() {
     private lateinit var binding: FragmentIntroAppBinding
