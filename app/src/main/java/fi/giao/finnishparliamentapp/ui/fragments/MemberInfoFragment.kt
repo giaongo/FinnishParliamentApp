@@ -1,5 +1,7 @@
 package fi.giao.finnishparliamentapp.ui.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -18,18 +20,18 @@ import fi.giao.finnishparliamentapp.databinding.FragmentMemberInfoBinding
 import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModel
 import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModelFactory
 
-const val IMG_BASE_URL = "https://avoindata.eduskunta.fi/"
-
 /**
  * Date: 5/10/2022
  * Name:Giao Ngo
  * Student id: 2112622
  * This fragment uses MemberInfoViewModel. It shows information of current Parliament member passed
  * from previous fragment, allows user to add their reviews, mark or un-mark that member as
- * favorite member and view list of favorite members.
+ * favorite member and view list of favorite members. This also lets user send email to parliament
+ * member by triggering implicit intent to other email app.
  * The member star rating displayed in the middle is a result of average calculation from
  * list of user star reviews.
  */
+const val IMG_BASE_URL = "https://avoindata.eduskunta.fi/"
 class MemberInfoFragment : Fragment() {
     private lateinit var binding: FragmentMemberInfoBinding
     private val viewModel: MemberInfoViewModel by viewModels {
@@ -64,6 +66,11 @@ class MemberInfoFragment : Fragment() {
                 currentMember.hetekaId
             )
             view.findNavController().navigate(action)
+        }
+        binding.emailButton.setOnClickListener {
+            val firstName = currentMember.firstname.lowercase()
+            val lastName = currentMember.lastname.lowercase()
+            composeEmail("$firstName.$lastName@eduskunta.fi", "Questions")
         }
     }
 
@@ -109,6 +116,19 @@ class MemberInfoFragment : Fragment() {
         }
     }
 
+    // Define implicit intent to send email
+    private fun composeEmail(address: String, subject:String) {
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data  =  Uri.parse("mailto:$address") // only email apps should handle this
+            putExtra(Intent.EXTRA_SUBJECT,subject)
+        }
+        if (intent.resolveActivity(requireContext().packageManager) != null) {
+//            requireContext().startActivity(Intent.createChooser(intent,"Send Email"))
+            startActivity(intent)
+        }
+    }
+
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.member_info_fragment_menu,menu)
     }
@@ -122,6 +142,7 @@ class MemberInfoFragment : Fragment() {
         }
     }
 
+    // Define click listener for app bar item menu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val currentFavoriteMember = MemberFavorite(0,currentMember.hetekaId,true)
         return when (item.itemId) {
