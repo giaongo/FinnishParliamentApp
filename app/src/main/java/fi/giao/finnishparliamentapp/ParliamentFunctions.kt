@@ -31,6 +31,8 @@ object ParliamentFunctions {
         }
         return false
     }
+
+    // This function is to calculate percentage of party in relation to total number of party
     fun calculatePercentage(party: String, listParty:List<String>): Double {
         if (party.isNotEmpty() && listParty.isNotEmpty()) {
             if (listParty.contains(party)){

@@ -21,13 +21,19 @@ import fi.giao.finnishparliamentapp.databinding.FragmentStatisticBinding
 import fi.giao.finnishparliamentapp.viewmodel.PartyListViewModel
 import fi.giao.finnishparliamentapp.viewmodel.PartyListViewModelFactory
 
+/**
+ * Date: 10/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This fragment connects to PartyListViewModel object and displays party statistic (the proportion
+ * of party in relation to total number of parties)
+ */
 class StatisticFragment : Fragment() {
     private lateinit var binding:FragmentStatisticBinding
     private val viewModel: PartyListViewModel by viewModels {
         PartyListViewModelFactory(requireActivity().application)
     }
     private lateinit var pieChart: PieChart
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +59,7 @@ class StatisticFragment : Fragment() {
     }
 
     /**
-     * Follow MPAndroidChart library
+     * Follow MPAndroidChart library to create pie chart based on data retrieved from view model
      * Source reference:
      * https://www.geeksforgeeks.org/android-create-a-pie-chart-with-kotlin/
      * https://stackoverflow.com/questions/50907258/pie-chart-alignment-issue-using-mpandroidchart
@@ -119,7 +125,5 @@ class StatisticFragment : Fragment() {
             highlightValue(null)
             invalidate()
         }
-
-
     }
 }

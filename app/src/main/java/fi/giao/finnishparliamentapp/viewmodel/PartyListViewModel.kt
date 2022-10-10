@@ -10,26 +10,33 @@ import fi.giao.finnishparliamentapp.repository.AppRepository
 import java.lang.IllegalArgumentException
 
 /**
- * Date: 5/10/2022
+ * Date: 10/10/2022
  * Name: Giao Ngo
  * Student id: 2112622
  * This view model is for PartyListFragment and obtains the list of identical party names
- * by using Transformations.map
+ * by using Transformations.map. Also calculates proportion of party in relation to number of
+ * parties in parliament
  */
 class PartyListViewModel(application: Application): AndroidViewModel(application) {
 
     private val appRepository = AppRepository(AppDatabase.getInstance(application))
     private val memberList: LiveData<List<ParliamentMember>> = appRepository.getAllMembers()
-     // Use Transformations.map to get list of party from list of members as LiveData
+
+    // Use Transformations.map to get list of party from list of members as LiveData
     val partyList: LiveData<List<String>> = Transformations.map(memberList) { list ->
         ParliamentFunctions.listParty(list)
     }
+
     private val _entries: MutableList<PieEntry> = mutableListOf()
     val entries: List<PieEntry> = _entries
+
+    // Get all parties in memberList (including the duplicated party)
     private val duplicatedParty:LiveData<List<String>> = Transformations.map(memberList) { list ->
         list.map { it.party }
     }
 
+    /* Returns a LiveData list of pair that includes party name together with it percentage that is
+     calculated by counting number of party in duplicatedParty and divides it by total party */
     val partyPercentage:LiveData<List<Pair<String,Double>>> = Transformations.map(duplicatedParty) {
         calculatePartyPercentage(it)
     }
