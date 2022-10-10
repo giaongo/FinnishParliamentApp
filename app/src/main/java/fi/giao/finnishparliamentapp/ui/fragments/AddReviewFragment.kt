@@ -29,7 +29,7 @@ class AddReviewFragment : Fragment() {
         ReviewViewModelFactory(requireActivity().application)
     }
 
-    private val safeArgs:AddReviewFragmentArgs by navArgs()
+    private val safeArgs: AddReviewFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +48,7 @@ class AddReviewFragment : Fragment() {
          https://developer.android.com/reference/android/widget/RatingBar#setOnRatingBarChangeListener(android.widget.RatingBar.OnRatingBarChangeListener)
          */
         binding.starRatingBar.setOnRatingBarChangeListener { _, rating, _ ->
-            Toast.makeText(requireContext(), "You rate $rating stars",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "You rate $rating stars", Toast.LENGTH_SHORT).show()
         }
         val receivedHetekaId = safeArgs.hetekaId
         val timeStamp = System.currentTimeMillis()
@@ -56,8 +56,16 @@ class AddReviewFragment : Fragment() {
             addReviewButton.setOnClickListener {
                 val rating = starRatingBar.rating
                 val comment = addCommentEditText.text.toString()
-                viewModel.insertReview(MemberReview(0,receivedHetekaId,rating,comment,timeStamp))
-                findNavController().popBackStack(R.id.addReviewFragment,true)
+                viewModel.insertReview(
+                    MemberReview(
+                        0,
+                        receivedHetekaId,
+                        rating,
+                        comment,
+                        timeStamp
+                    )
+                )
+                findNavController().popBackStack(R.id.addReviewFragment, true)
             }
         }
 

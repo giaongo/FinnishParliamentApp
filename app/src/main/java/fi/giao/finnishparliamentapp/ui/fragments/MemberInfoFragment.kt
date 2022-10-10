@@ -32,6 +32,7 @@ import fi.giao.finnishparliamentapp.viewmodel.MemberInfoViewModelFactory
  * list of user star reviews.
  */
 const val IMG_BASE_URL = "https://avoindata.eduskunta.fi/"
+
 class MemberInfoFragment : Fragment() {
     private lateinit var binding: FragmentMemberInfoBinding
     private val viewModel: MemberInfoViewModel by viewModels {
@@ -70,7 +71,7 @@ class MemberInfoFragment : Fragment() {
         binding.emailButton.setOnClickListener {
             val firstName = currentMember.firstname.lowercase()
             val lastName = currentMember.lastname.lowercase()
-            composeEmail("$firstName.$lastName@eduskunta.fi", "Questions")
+            composeEmail("$firstName.$lastName@eduskunta.fi")
         }
     }
 
@@ -96,7 +97,8 @@ class MemberInfoFragment : Fragment() {
         viewModel.setHetekaId(currentMember.hetekaId)
 
         val reviewAdapter = ReviewAdapter(requireContext()) {
-            val action = MemberInfoFragmentDirections.actionMemberInfoFragmentToUpdateReviewFragment2(it)
+            val action =
+                MemberInfoFragmentDirections.actionMemberInfoFragmentToUpdateReviewFragment2(it)
             findNavController().navigate(action)
         }
 
@@ -117,20 +119,18 @@ class MemberInfoFragment : Fragment() {
     }
 
     // Define implicit intent to send email
-    private fun composeEmail(address: String, subject:String) {
+    private fun composeEmail(address: String) {
         val intent = Intent(Intent.ACTION_SENDTO).apply {
-            data  =  Uri.parse("mailto:$address") // only email apps should handle this
-            putExtra(Intent.EXTRA_SUBJECT,subject)
+            data = Uri.parse("mailto:$address") // only email apps should handle this
+            putExtra(Intent.EXTRA_SUBJECT, "Questions")
         }
         if (intent.resolveActivity(requireContext().packageManager) != null) {
-//            requireContext().startActivity(Intent.createChooser(intent,"Send Email"))
-            startActivity(intent)
+            requireContext().startActivity(Intent.createChooser(intent, "Email via..."))
         }
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.member_info_fragment_menu,menu)
+        inflater.inflate(R.menu.member_info_fragment_menu, menu)
     }
 
     // Option menu (un_mark or mark) is visible based on whether the member is a favorite or not
@@ -144,18 +144,26 @@ class MemberInfoFragment : Fragment() {
 
     // Define click listener for app bar item menu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val currentFavoriteMember = MemberFavorite(0,currentMember.hetekaId,true)
+        val currentFavoriteMember = MemberFavorite(0, currentMember.hetekaId, true)
         return when (item.itemId) {
             R.id.mark_favorite -> {
                 viewModel.markFavorite(currentFavoriteMember)
-                Toast.makeText(requireContext(),getString(R.string.mark_favorite_member_name,
-                    currentMember.firstname),Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(), getString(
+                        R.string.mark_favorite_member_name,
+                        currentMember.firstname
+                    ), Toast.LENGTH_SHORT
+                ).show()
                 true
             }
             R.id.unMark_favorite -> {
                 viewModel.unMarkFavorite(currentMember.hetekaId)
-                Toast.makeText(requireContext(),getString(R.string.unMark_favorite_member_name,
-                    currentMember.firstname),Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(), getString(
+                        R.string.unMark_favorite_member_name,
+                        currentMember.firstname
+                    ), Toast.LENGTH_SHORT
+                ).show()
                 true
             }
             R.id.view_favorites_from_info_fragment -> {

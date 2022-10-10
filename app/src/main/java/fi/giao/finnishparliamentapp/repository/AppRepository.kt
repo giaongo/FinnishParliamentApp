@@ -11,7 +11,7 @@ import kotlinx.coroutines.withContext
  * Date: 5/10/2022
  * Name: Giao Ngo
  * Student id: 2112622
- * This repository contains methods to fetch data from Remote Data Source and from Room database 
+ * This repository contains methods to fetch data from Remote Data Source and from Room database
  */
 class AppRepository(private val database: AppDatabase) {
 

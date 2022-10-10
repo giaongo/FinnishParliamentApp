@@ -29,7 +29,7 @@ import fi.giao.finnishparliamentapp.viewmodel.PartyListViewModelFactory
  * of party in relation to total number of parties)
  */
 class StatisticFragment : Fragment() {
-    private lateinit var binding:FragmentStatisticBinding
+    private lateinit var binding: FragmentStatisticBinding
     private val viewModel: PartyListViewModel by viewModels {
         PartyListViewModelFactory(requireActivity().application)
     }
@@ -38,8 +38,8 @@ class StatisticFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View{
-        binding = FragmentStatisticBinding.inflate(inflater,container,false)
+    ): View {
+        binding = FragmentStatisticBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -69,7 +69,7 @@ class StatisticFragment : Fragment() {
         pieChart.apply {
             setUsePercentValues(true)
             description.isEnabled = false
-            setExtraOffsets(0.5f,5f,0f,5f)
+            setExtraOffsets(0.5f, 5f, 0f, 5f)
             dragDecelerationFrictionCoef = 0.95f
             isDrawHoleEnabled = true
             setHoleColor(Color.WHITE)
@@ -80,16 +80,16 @@ class StatisticFragment : Fragment() {
             setDrawEntryLabels(false)
             rotationAngle = 0f
             isRotationEnabled = true
-            isHighlightPerTapEnabled =  true
-            animateY(1400,Easing.EaseInOutQuad)
+            isHighlightPerTapEnabled = true
+            animateY(1400, Easing.EaseInOutQuad)
             legend.isEnabled = false
 
         }
-        val dataSet = PieDataSet(viewModel.entries,"Parliament Parties")
+        val dataSet = PieDataSet(viewModel.entries, "Parliament Parties")
         dataSet.apply {
             setDrawIcons(false)
             sliceSpace = 3f
-            iconsOffset = MPPointF(0f,40f)
+            iconsOffset = MPPointF(0f, 40f)
             selectionShift = 5f
             xValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
             yValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
@@ -111,7 +111,7 @@ class StatisticFragment : Fragment() {
         colors.add(requireContext().getColor(R.color.purple))
         colors.add(requireContext().getColor(R.color.dark_green))
 
-        dataSet.colors =  colors
+        dataSet.colors = colors
 
         val pieData = PieData(dataSet)
         pieData.apply {

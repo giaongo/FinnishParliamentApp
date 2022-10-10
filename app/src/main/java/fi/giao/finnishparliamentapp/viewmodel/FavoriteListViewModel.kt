@@ -15,7 +15,7 @@ import kotlinx.coroutines.*
  * This view model does mapping 2 tables with hetekaId and return the list of favorite members that
  * contain their detail info (such as name and party).
  */
-class FavoriteListViewModel(application: Application):AndroidViewModel(application) {
+class FavoriteListViewModel(application: Application) : AndroidViewModel(application) {
     private val appRepository = AppRepository(AppDatabase.getInstance(application))
 
     /*
@@ -28,18 +28,18 @@ class FavoriteListViewModel(application: Application):AndroidViewModel(applicati
      */
     val favoriteMemberList: LiveData<List<ParliamentMember>> = Transformations
         .switchMap(appRepository.getAllFavorite()) {
-           val listHetekaId =  ParliamentFunctions.listHetekaId(it)
+            val listHetekaId = ParliamentFunctions.listHetekaId(it)
             appRepository.getFavoriteParliamentMember(listHetekaId)
-    }
+        }
 
-    fun unMarkFavorite(hetekaId:Int) = viewModelScope.launch {
+    fun unMarkFavorite(hetekaId: Int) = viewModelScope.launch {
         appRepository.unMarkFavorite(hetekaId)
     }
 }
 
-class FavoriteListViewModelFactory(val app: Application): ViewModelProvider.Factory {
+class FavoriteListViewModelFactory(val app: Application) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return if(modelClass.isAssignableFrom(FavoriteListViewModel::class.java)) {
+        return if (modelClass.isAssignableFrom(FavoriteListViewModel::class.java)) {
             FavoriteListViewModel(this.app) as T
         } else {
             throw IllegalArgumentException("ViewModel not found")

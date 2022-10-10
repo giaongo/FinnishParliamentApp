@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
  * calculates average rating and shows user reviews. It also allows user to mark or un-mark
  * member as favorite.
  */
-class MemberInfoViewModel(application: Application): AndroidViewModel(application) {
+class MemberInfoViewModel(application: Application) : AndroidViewModel(application) {
     private val appRepository = AppRepository(AppDatabase.getInstance(application))
     private val hetekaId = MutableLiveData<Int>()
 
@@ -26,9 +26,10 @@ class MemberInfoViewModel(application: Application): AndroidViewModel(applicatio
         whenever the value of hetekaId changes. As the return from function in the scope is LiveData,
         the value of its is observed accordingly
     */
-    val allReviewsByHetekaId: LiveData<List<MemberReview>> = Transformations.switchMap(hetekaId) {
-        id -> appRepository.getAllReviewsByHetekaId(id)
-    }
+    val allReviewsByHetekaId: LiveData<List<MemberReview>> =
+        Transformations.switchMap(hetekaId) { id ->
+            appRepository.getAllReviewsByHetekaId(id)
+        }
 
     /*
      Get averageRating as a LiveData depending on the change of allReviewsByHetekaId LiveData
@@ -36,8 +37,8 @@ class MemberInfoViewModel(application: Application): AndroidViewModel(applicatio
      calculated by using list.average()
      */
     val averageRating: LiveData<Float> = Transformations.map(allReviewsByHetekaId) {
-                val listRating = ParliamentFunctions.listRating(it)
-                listRating.average().toFloat()
+        val listRating = ParliamentFunctions.listRating(it)
+        listRating.average().toFloat()
     }
 
     /* Get isMarkedFavorite as a LiveData observed from favoriteList in which it checks whether
@@ -45,26 +46,26 @@ class MemberInfoViewModel(application: Application): AndroidViewModel(applicatio
      */
     private val favoriteList: LiveData<List<MemberFavorite>> = appRepository.getAllFavorite()
     val isMarkedFavorite: LiveData<Boolean> = Transformations.map(favoriteList) {
-            val hetekaIdList = ParliamentFunctions.listHetekaId(it)
-            ParliamentFunctions.checkValueInList(hetekaId.value,hetekaIdList)
+        val hetekaIdList = ParliamentFunctions.listHetekaId(it)
+        ParliamentFunctions.checkValueInList(hetekaId.value, hetekaIdList)
     }
 
-    fun setHetekaId(id:Int) {
+    fun setHetekaId(id: Int) {
         hetekaId.value = id
     }
 
-    fun markFavorite(favoriteMember:MemberFavorite) = viewModelScope.launch {
+    fun markFavorite(favoriteMember: MemberFavorite) = viewModelScope.launch {
         appRepository.markFavorite(favoriteMember)
     }
 
-    fun unMarkFavorite(hetekaId:Int) = viewModelScope.launch {
+    fun unMarkFavorite(hetekaId: Int) = viewModelScope.launch {
         appRepository.unMarkFavorite(hetekaId)
     }
 }
 
-class MemberInfoViewModelFactory(val app:Application): ViewModelProvider.Factory {
+class MemberInfoViewModelFactory(val app: Application) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return if(modelClass.isAssignableFrom(MemberInfoViewModel::class.java)) {
+        return if (modelClass.isAssignableFrom(MemberInfoViewModel::class.java)) {
             MemberInfoViewModel(this.app) as T
         } else {
             throw IllegalArgumentException("ViewModel not found")

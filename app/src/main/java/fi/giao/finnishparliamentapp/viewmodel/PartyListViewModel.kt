@@ -17,7 +17,7 @@ import java.lang.IllegalArgumentException
  * by using Transformations.map. Also calculates proportion of party in relation to number of
  * parties in parliament
  */
-class PartyListViewModel(application: Application): AndroidViewModel(application) {
+class PartyListViewModel(application: Application) : AndroidViewModel(application) {
 
     private val appRepository = AppRepository(AppDatabase.getInstance(application))
     private val memberList: LiveData<List<ParliamentMember>> = appRepository.getAllMembers()
@@ -31,33 +31,34 @@ class PartyListViewModel(application: Application): AndroidViewModel(application
     val entries: List<PieEntry> = _entries
 
     // Get all parties in memberList (including the duplicated party)
-    private val duplicatedParty:LiveData<List<String>> = Transformations.map(memberList) { list ->
+    private val duplicatedParty: LiveData<List<String>> = Transformations.map(memberList) { list ->
         list.map { it.party }
     }
 
     /* Returns a LiveData list of pair that includes party name together with it percentage that is
      calculated by counting number of party in duplicatedParty and divides it by total party */
-    val partyPercentage:LiveData<List<Pair<String,Double>>> = Transformations.map(duplicatedParty) {
-        calculatePartyPercentage(it)
-    }
+    val partyPercentage: LiveData<List<Pair<String, Double>>> =
+        Transformations.map(duplicatedParty) {
+            calculatePartyPercentage(it)
+        }
 
-    private fun calculatePartyPercentage(duplicatedListParty:List<String>): List<Pair<String,Double>> {
-        val percentageList = mutableListOf<Pair<String,Double>>()
+    private fun calculatePartyPercentage(duplicatedListParty: List<String>): List<Pair<String, Double>> {
+        val percentageList = mutableListOf<Pair<String, Double>>()
         val uniquePartyList = duplicatedListParty.toSet().toList()
         if (uniquePartyList.isNotEmpty()) {
             uniquePartyList.forEach { party ->
-                val percentage = ParliamentFunctions.calculatePercentage(party,duplicatedListParty)
-                percentageList.add(Pair(party,percentage))
-                _entries.add(PieEntry(percentage.toFloat(),party))
+                val percentage = ParliamentFunctions.calculatePercentage(party, duplicatedListParty)
+                percentageList.add(Pair(party, percentage))
+                _entries.add(PieEntry(percentage.toFloat(), party))
             }
         }
         return percentageList.toList()
     }
 }
 
-class PartyListViewModelFactory(val app: Application): ViewModelProvider.Factory {
+class PartyListViewModelFactory(val app: Application) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return if(modelClass.isAssignableFrom(PartyListViewModel::class.java))  {
+        return if (modelClass.isAssignableFrom(PartyListViewModel::class.java)) {
             PartyListViewModel(this.app) as T
         } else {
             throw IllegalArgumentException("ViewModel not found")

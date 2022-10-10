@@ -40,7 +40,8 @@ class FavoriteListFragment : Fragment() {
         val favoriteAdapter = FavoriteAdapter(
             requireContext(),
             viewMoreListener = {
-                val action = FavoriteListFragmentDirections.actionFavoriteListFragmentToMemberInfoFragment(it)
+                val action =
+                    FavoriteListFragmentDirections.actionFavoriteListFragmentToMemberInfoFragment(it)
                 view.findNavController().navigate(action)
             },
             unMarkListener = {
@@ -49,7 +50,7 @@ class FavoriteListFragment : Fragment() {
         )
         binding.favoriteListRecyclerView.apply {
             adapter = favoriteAdapter
-            layoutManager = GridLayoutManager(requireContext(),2)
+            layoutManager = GridLayoutManager(requireContext(), 2)
         }
 
         viewModel.favoriteMemberList.observe(viewLifecycleOwner) {

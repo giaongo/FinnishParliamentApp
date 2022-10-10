@@ -17,20 +17,20 @@ import fi.giao.finnishparliamentapp.databinding.FragmentIntroAppBinding
  * to view either favorite list or party list
  */
 class IntroAppFragment : Fragment() {
-    private lateinit var binding:FragmentIntroAppBinding
+    private lateinit var binding: FragmentIntroAppBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentIntroAppBinding.inflate(inflater,container,false)
+        binding = FragmentIntroAppBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.view_parties -> {
                     findNavController().navigate(R.id.action_introAppFragment_to_partyListFragment)
                     true

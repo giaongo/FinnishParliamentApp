@@ -24,18 +24,20 @@ class PartyListFragment : Fragment() {
     private val viewModel: PartyListViewModel by viewModels {
         PartyListViewModelFactory(requireActivity().application)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPartyListBinding.inflate(inflater,container,false)
+        binding = FragmentPartyListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val memberAdapter = PartyAdapter{
-            val action = PartyListFragmentDirections.actionPartyListFragmentToMemberListFragment(party = it)
+        val memberAdapter = PartyAdapter {
+            val action =
+                PartyListFragmentDirections.actionPartyListFragmentToMemberListFragment(party = it)
             view.findNavController().navigate(action)
         }
 
@@ -46,6 +48,5 @@ class PartyListFragment : Fragment() {
         viewModel.partyList.observe(viewLifecycleOwner) {
             memberAdapter.submitList(it)
         }
-
     }
 }

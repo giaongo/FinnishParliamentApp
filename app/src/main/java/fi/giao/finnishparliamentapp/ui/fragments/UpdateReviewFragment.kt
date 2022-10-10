@@ -27,7 +27,7 @@ class UpdateReviewFragment : Fragment() {
     private val viewModel: ReviewViewModel by viewModels {
         ReviewViewModelFactory(requireActivity().application)
     }
-    private lateinit var currentReview:MemberReview
+    private lateinit var currentReview: MemberReview
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ class UpdateReviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentUpdateReviewBinding.inflate(inflater,container,false)
+        binding = FragmentUpdateReviewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -55,23 +55,29 @@ class UpdateReviewFragment : Fragment() {
     }
 
     private fun updateReview() {
-        val updatedReview = MemberReview(currentReview.reviewId,currentReview.hetekaId,
-        binding.updateStarRatingBar.rating,binding.updateCommentEditText.text.toString(),
-        currentReview.timeStamp)
+        val updatedReview = MemberReview(
+            currentReview.reviewId, currentReview.hetekaId,
+            binding.updateStarRatingBar.rating, binding.updateCommentEditText.text.toString(),
+            currentReview.timeStamp
+        )
         viewModel.updateReview(updatedReview)
-        findNavController().popBackStack(R.id.updateReviewFragment,true)
+        findNavController().popBackStack(R.id.updateReviewFragment, true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.update_fragment_menu,menu)
+        inflater.inflate(R.menu.update_fragment_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when (item.itemId) {
             R.id.delete_review -> {
                 viewModel.deleteReview(currentReview)
-                Toast.makeText(requireContext(),"Review: \"${currentReview.comment}\" is deleted", Toast.LENGTH_SHORT).show()
-                findNavController().popBackStack(R.id.updateReviewFragment,true)
+                Toast.makeText(
+                    requireContext(),
+                    "Review: \"${currentReview.comment}\" is deleted",
+                    Toast.LENGTH_SHORT
+                ).show()
+                findNavController().popBackStack(R.id.updateReviewFragment, true)
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -46,7 +46,9 @@ class MemberListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val memberAdapter = MemberAdapter({
-            val action = MemberListFragmentDirections.actionMemberListFragmentToMemberInfoFragment(requestedMember = it)
+            val action = MemberListFragmentDirections.actionMemberListFragmentToMemberInfoFragment(
+                requestedMember = it
+            )
             view.findNavController().navigate(action)
         }, requireContext())
 

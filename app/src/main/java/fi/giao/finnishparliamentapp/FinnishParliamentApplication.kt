@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
+
 /**
  * Date: 5/10/2022
  * Name:Giao Ngo
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit
  * and save to database once a day. When the process for the application is created, this
  * application class is instantiated before any other class.
  */
-class FinnishParliamentApplication: Application(){
+class FinnishParliamentApplication : Application() {
     private val applicationScope = CoroutineScope(Dispatchers.Default)
 
     override fun onCreate() {
@@ -24,11 +25,13 @@ class FinnishParliamentApplication: Application(){
         Timber.plant(Timber.DebugTree())
         delayedInit()
     }
+
     private fun delayedInit() {
         applicationScope.launch {
             setUpRecurringWork()
         }
     }
+
     private fun setUpRecurringWork() {
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
@@ -41,11 +44,9 @@ class FinnishParliamentApplication: Application(){
             .build()
         Timber.d("Periodic work request is scheduled")
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
-                GetDataAndSaveWorker.WORK_NAME,
-                ExistingPeriodicWorkPolicy.KEEP,
-                repeatingRequest
-            )
+            GetDataAndSaveWorker.WORK_NAME,
+            ExistingPeriodicWorkPolicy.KEEP,
+            repeatingRequest
+        )
     }
-
-
 }

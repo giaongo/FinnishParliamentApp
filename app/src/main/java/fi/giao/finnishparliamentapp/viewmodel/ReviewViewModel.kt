@@ -16,23 +16,25 @@ import kotlinx.coroutines.launch
  * Student id: 2112622
  * This view model queries the insert, update and delete review
  */
-class ReviewViewModel(application: Application): AndroidViewModel(application) {
+class ReviewViewModel(application: Application) : AndroidViewModel(application) {
     private val appRepository = AppRepository(AppDatabase.getInstance(application))
     fun insertReview(review: MemberReview) = viewModelScope.launch {
         appRepository.insertReview(review)
     }
+
     fun updateReview(review: MemberReview) = viewModelScope.launch {
         appRepository.updateReview(review)
     }
+
     fun deleteReview(review: MemberReview) = viewModelScope.launch {
         appRepository.deleteReview(review)
     }
 
 }
 
-class ReviewViewModelFactory(val app:Application): ViewModelProvider.Factory {
+class ReviewViewModelFactory(val app: Application) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return if(modelClass.isAssignableFrom(ReviewViewModel::class.java)) {
+        return if (modelClass.isAssignableFrom(ReviewViewModel::class.java)) {
             ReviewViewModel(this.app) as T
         } else {
             throw IllegalArgumentException("ViewModel not found")

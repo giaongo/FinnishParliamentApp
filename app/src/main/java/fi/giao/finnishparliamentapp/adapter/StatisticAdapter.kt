@@ -9,7 +9,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fi.giao.finnishparliamentapp.R
-
+/**
+ * Date: 10/10/2022
+ * Name: Giao Ngo
+ * Student id: 2112622
+ * This recycler view adapter is for recycler view in StatisticFragment
+ */
 class StatisticAdapter(val context:Context): ListAdapter<Pair<String,Double>, StatisticAdapter.StatisticViewHolder>(StatisticDiffCallBack) {
     inner class StatisticViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
@@ -38,7 +43,4 @@ class StatisticAdapter(val context:Context): ListAdapter<Pair<String,Double>, St
             return oldItem == newItem
         }
     }
-
-
-
 }

@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import fi.giao.finnishparliamentapp.R
+
 /**
  * Date: 5/10/2022
  * Name: Giao Ngo

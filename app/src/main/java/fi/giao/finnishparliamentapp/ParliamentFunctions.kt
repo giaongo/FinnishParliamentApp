@@ -16,7 +16,8 @@ object ParliamentFunctions {
     fun listParty(memberList: List<ParliamentMember>): List<String> {
         return memberList.map { it.party }.toSet().toList().sorted()
     }
-    fun listRating(reviewList: List<MemberReview>):List<Float> {
+
+    fun listRating(reviewList: List<MemberReview>): List<Float> {
         return reviewList.map { it.rating }
     }
 
@@ -24,7 +25,7 @@ object ParliamentFunctions {
         return favoriteList.map { it.hetekaId }
     }
 
-    fun checkValueInList(input: Int?, list:List<Int>):Boolean {
+    fun checkValueInList(input: Int?, list: List<Int>): Boolean {
         if (input != null) {
             return list.contains(input)
         }
@@ -32,12 +33,12 @@ object ParliamentFunctions {
     }
 
     // This function is to calculate percentage of party in relation to total number of party
-    fun calculatePercentage(party: String, listParty:List<String>): Double {
+    fun calculatePercentage(party: String, listParty: List<String>): Double {
         if (party.isNotEmpty() && listParty.isNotEmpty()) {
-            if (listParty.contains(party)){
-                val partyCount  = listParty.count { it == party }
+            if (listParty.contains(party)) {
+                val partyCount = listParty.count { it == party }
                 val result = partyCount.toDouble().div(listParty.size).times(100)
-                return String.format("%.1f",result).toDouble()
+                return String.format("%.1f", result).toDouble()
             }
         }
         return 0.0
